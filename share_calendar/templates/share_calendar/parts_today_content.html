@@ -10,19 +10,19 @@
                         {{item.sc_title.selected_date|date:"Y-m-d"}}
                     </div>
                     <div class="main_pic">
-                        <img src="../../../media/{{item.main_pic}}/">
+                        <img src="../../../media/{{item.main_pic}}">
                     </div>
                 </a>  
                     <div class="footer">
                         <a href="{% url 'share_calendar:account' item.sc_title.author.pk 0 %}">
                         <span id="author">
-                        <img src="../../../media/{{item.sc_title.author.profile.icon}}/">
+                        <img src="../../../media/{{item.sc_title.author.profile.icon}}">
                         @{{item.sc_title.author}}
                         </span>
                         </a>
                         <a href="{% url 'share_calendar:sch_detail' item.sc_title.pk %}">
                         <span id="comment">
-                            <img  src="../../../media/button/comment.png/">
+                            <img  src="../../../media/button/comment.png">
                         </span>
                         </a>
                     </div>   

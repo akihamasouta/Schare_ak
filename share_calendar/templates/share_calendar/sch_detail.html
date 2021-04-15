@@ -5,21 +5,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-        <link href="../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
-        <link href="../../../static/share_calendar/css/style_schedule_ditail.css/" type="text/css" rel="stylesheet">
+        <link href="../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+        <link href="../../../static/share_calendar/css/style_schedule_ditail.css" type="text/css" rel="stylesheet">
 </head>
 {% endblock %}
 {% block icon %}
-<div class="icon"><img id="icon_img" src="../../media/button/logo.png/"></div>
+<div class="icon"><img id="icon_img" src="../../media/button/logo.png"></div>
 {% endblock %}
 {% block pagenation %}
 <div class="control"></div>
 {% endblock %}
 {% block menu %}
             <ul>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a></li>
             </ul>
 {% endblock %}
 {% block content %}
@@ -36,9 +36,9 @@
                             {{form.user}}
                             {{form.schedule}}
                             {{form.good}}
-                            <button id="heart" name="heart_button" type="submit"><img id="black_heart" src="../../media/button/book_m.PNG/"></button>
+                            <button id="heart" name="heart_button" type="submit"><img id="black_heart" src="../../media/button/book_m.PNG"></button>
                         {% else %}
-                            <button id="heart" name="heart_button" type="submit"><img id="black_heart" src="../../media/button/book_m_blue.PNG/"></button>
+                            <button id="heart" name="heart_button" type="submit"><img id="black_heart" src="../../media/button/book_m_blue.PNG"></button>
                         {{form.user}}
                         {{form.schedule}}
                         {{form.good}}
@@ -66,7 +66,7 @@
                                 {% endif %}
                             {% endif %}
                         </div>
-                        <div class="detail_content"><img src="../../media/button/author.PNG"><a href="{% url 'share_calendar:account' data.author.pk 0 %}"><span><img src="../../media/{{data.author.profile.icon}}/">@{{data.author}}</span></a></div>
+                        <div class="detail_content"><img src="../../media/button/author.PNG"><a href="{% url 'share_calendar:account' data.author.pk 0 %}"><span><img src="../../media/{{data.author.profile.icon}}">@{{data.author}}</span></a></div>
                         {% if data.tag %}
                         <div class="detail_content"><img src="../../media/button/tag.PNG"><span id="id_tag">{{data.tag}}</span></div>
                         {% endif %}
@@ -77,13 +77,13 @@
                         {% if data.tag %}
                             <div class="detail_content_right_tag">
                             {% for item in member %}
-                            <a href="{% url 'share_calendar:account' item.pk 0 %}"><span id="item_member"><img src="../../media/{{item.profile.icon}}/">@{{item}}</span></a>
+                            <a href="{% url 'share_calendar:account' item.pk 0 %}"><span id="item_member"><img src="../../media/{{item.profile.icon}}">@{{item}}</span></a>
                             {% endfor %}
                             </div>
                         {% else %}
                         <div class="detail_content_right">
                         {% for item in member %}
-                            <a href="{% url 'share_calendar:account' item.pk 0 %}"><span id="item_member"><img src="../../media/{{item.profile.icon}}/">@{{item}}</span></a>
+                            <a href="{% url 'share_calendar:account' item.pk 0 %}"><span id="item_member"><img src="../../media/{{item.profile.icon}}">@{{item}}</span></a>
                         {% endfor %}
                         </div>
                         {% endif %}
@@ -96,7 +96,7 @@
                 {% for item in comment %}
                 <div class="comment_block">
                     <div class="left">
-                        <a href="{% url 'share_calendar:account' item.author.pk 0 %}"><img src="../../media/{{item.author.profile.icon}}/"></a>
+                        <a href="{% url 'share_calendar:account' item.author.pk 0 %}"><img src="../../media/{{item.author.profile.icon}}"></a>
                     </div>
                     <div class="right">
                         <a href="{% url 'share_calendar:account' item.author.pk 0 %}"><span>@{{item.author}}</span></a>
@@ -117,5 +117,5 @@
                 </form>
             </div>
     </div>
-<script src="../../../static/share_calendar/js/sch_ditail.js/"></script>
+<script src="../../../static/share_calendar/js/sch_ditail.js"></script>
 {% endblock %}

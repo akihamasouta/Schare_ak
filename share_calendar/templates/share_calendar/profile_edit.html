@@ -6,22 +6,22 @@
 <html lang="ja">
 <head>
     <meta chareset="UTF-8">
-    <link href="../../../../static/share_calendar/css/base_form.css/" type="text/css" rel="stylesheet">
-    <link href="../../../../static/share_calendar/css/profile_edit.css/" type="text/css" rel="stylesheet">
-    <link href="../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/base_form.css" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/profile_edit.css" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
 </head>
 {% endblock %}
 {% block icon %}
-            <div class="icon"><img id="icon_img" src="../../media/button/logo.png/"></div>
+            <div class="icon"><img id="icon_img" src="../../media/button/logo.png"></div>
 {% endblock %}
 {% block pagenation %}
 <div class="control"></div>
 {% endblock %}
 {% block menu %}
             <ul>   
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a></li>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}"></a></li>
             </ul>
 {% endblock %}
@@ -29,7 +29,7 @@
 <div class="form_container">
     <div class="form">
         <div class="form_content">
-        <div class="redirect"><a href="../../account/0/0/"><button>back</button></a></div>
+        <div class="redirect"><a href="../../account/0/0"><button>back</button></a></div>
         <form class="form_edit_post" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
             <div class="form_icon_container">icon<br>{{form.icon}}</div>

@@ -7,10 +7,10 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <link href="../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
-    <link href="../../../../static/share_calendar/css/style_index.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/style_index.css" type="text/css" rel="stylesheet">
 {% if not request.user.is_authenticated %}
-    <link href="../../../../static/share_calendar/css/not_login.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/not_login.css" type="text/css" rel="stylesheet">
 {% endif %}
 </head>
 {% endblock %}
@@ -21,9 +21,9 @@
         <div class="header_cont">
 {% block icon %}
             {% if num == 0 %}
-            <div class="icon"><img id="icon_img" src="media/button/logo.png/"></div>
+            <div class="icon"><img id="icon_img" src="media/button/logo.png"></div>
             {% else %}
-            <div class="icon"><img id="icon_img" src="../../media/button/logo.png/"></div>
+            <div class="icon"><img id="icon_img" src="../../media/button/logo.png"></div>
             {% endif %}
 {% endblock %}
 {% block pagenation %}
@@ -32,20 +32,20 @@
 {% block menu %}
             {% if num == 0 %}
             <ul>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="media/button/sch.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="media/button/memory.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="media/button/smile.PNG"></a></li>
                 {% if balloon %}
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:balloon' %}"><div class="animation_container2"><img class="animation_img2" src="media/button/animation_balloon2.JPG/"></div></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:balloon' %}"><div class="animation_container2"><img class="animation_img2" src="media/button/animation_balloon2.JPG"></div></a></li>
                 {% endif %}
             </ul>
             {% else %}
             <ul>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a></li>
                 {% if balloon %}
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:balloon' %}"><div class="animation_container2"><img class="animation_img2" src="../../media/button/animation_balloon2.JPG/"></div></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:balloon' %}"><div class="animation_container2"><img class="animation_img2" src="../../media/button/animation_balloon2.JPG"></div></a></li>
                 {% endif %}
             </ul>
             {% endif %}
@@ -95,9 +95,9 @@
                                          {% if item == sch.selected_date and sch.selected_date == sch.end_day %}
                                             <div class="day_obj" >
                                                 {% if num == 0 %}
-                                                    <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}/"></span>
+                                                    <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
                                                 {% else %}
-                                                    <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}/"></span>
+                                                    <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
                                                 {% endif %}
                                                     <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
                                                     <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
@@ -116,9 +116,9 @@
                                                     {% csrf_token %}
                                                     <button type="submit" name="{{sch.pk}}">
                                                     {% if num == 0 %}
-                                                    <img src="media/button/balloon_red.PNG/" class="comment_png">
+                                                    <img src="media/button/balloon_red.PNG" class="comment_png">
                                                     {% else %}
-                                                    <img src="../../media/button/balloon_red.PNG/" class="comment_png">
+                                                    <img src="../../media/button/balloon_red.PNG" class="comment_png">
                                                     {% endif %}
                                                     </button>
                                                     </form>
@@ -139,15 +139,15 @@
                                                         <a href="{% url 'share_calendar:account' members.pk 0 %}">
                                                         {% if members.profile.icon %}
                                                             {% if num == 0 %}
-                                                            <img src="media/{{members.profile.icon}}/">
+                                                            <img src="media/{{members.profile.icon}}">
                                                             {% else %}
-                                                            <img src="../../media/{{members.profile.icon}}/">
+                                                            <img src="../../media/{{members.profile.icon}}">
                                                             {% endif %}
                                                         {% else %}
                                                             {% if num == 0 %}
-                                                            <img src="media/button/no_icon.PNG/">
+                                                            <img src="media/button/no_icon.PNG">
                                                             {% else %}
-                                                            <img src="../../media/button/no_icon.PNG/">
+                                                            <img src="../../media/button/no_icon.PNG">
                                                             {% endif %}
                                                         {% endif %}
                                                         </a>
@@ -161,9 +161,9 @@
                                                     {% if item == item2 %}
                                                         <div class="day_obj" >
                                                         {% if num == 0 %}
-                                                            <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}/"></span>
+                                                            <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
                                                         {% else %}
-                                                            <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}/"></span>
+                                                            <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
                                                         {% endif %}
                                                                 <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
                                                                 <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
@@ -174,9 +174,9 @@
                                                                 {% csrf_token %}
                                                                 <button type="submit" name="{{sch.pk}}">
                                                                 {% if num == 0 %}
-                                                                <img src="media/button/balloon_red.PNG/" class="comment_png">
+                                                                <img src="media/button/balloon_red.PNG" class="comment_png">
                                                                 {% else %}
-                                                                <img src="../../media/button/balloon_red.PNG/" class="comment_png">
+                                                                <img src="../../media/button/balloon_red.PNG" class="comment_png">
                                                                 {% endif %}
                                                                 </button>
                                                                 </form>
@@ -196,9 +196,9 @@
                                                                 <span class="member_name">
                                                                     <a href="{% url 'share_calendar:account' members.pk 0 %}">
                                                                     {% if num == 0 %}
-                                                                    <img src="media/{{members.profile.icon}}/">
+                                                                    <img src="media/{{members.profile.icon}}">
                                                                     {% else %}
-                                                                    <img src="../../media/{{members.profile.icon}}/">
+                                                                    <img src="../../media/{{members.profile.icon}}">
                                                                     {% endif %}
                                                                     </a>
                                                                 </span> 
@@ -211,9 +211,9 @@
                                             {% if item == sch.selected_date %}
                                                 <div class="day_obj" >
                                                 {% if num == 0 %}
-                                                    <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}/"></span>
+                                                    <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
                                                 {% else %}
-                                                    <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}/"></span>
+                                                    <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
                                                 {% endif %}
                                                     <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
                                                     <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>            
@@ -251,15 +251,15 @@
                                                             <a href="{% url 'share_calendar:account' members.pk 0 %}">
                                                             {% if members.profile.icon %}
                                                                 {% if num == 0 %}
-                                                                <img src="media/{{members.profile.icon}}/">
+                                                                <img src="media/{{members.profile.icon}}">
                                                                 {% else %}
-                                                                <img src="../../media/{{members.profile.icon}}/">
+                                                                <img src="../../media/{{members.profile.icon}}">
                                                                 {% endif %}
                                                             {% else %}
                                                                 {% if num == 0 %}
-                                                                <img src="media/button/no_icon.PNG/">
+                                                                <img src="media/button/no_icon.PNG">
                                                                 {% else %}
-                                                                <img src="../../media/button/no_icon.PNG/">
+                                                                <img src="../../media/button/no_icon.PNG">
                                                                 {% endif %}
                                                             {% endif %}
                                                             </a>
@@ -271,9 +271,9 @@
                                             {% if item == sch.end_day %}
                                                 <div class="day_obj" >
                                                     {% if num == 0 %}
-                                                        <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}/"></span>
+                                                        <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
                                                     {% else %}
-                                                        <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}/"></span>
+                                                        <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
                                                     {% endif %}
                                                         <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
                                                     <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>            
@@ -288,9 +288,9 @@
                                                         {% csrf_token %}
                                                         <button type="submit" name="{{sch.pk}}">
                                                         {% if num == 0 %}
-                                                        <img src="media/button/balloon_red.PNG/" class="comment_png">
+                                                        <img src="media/button/balloon_red.PNG" class="comment_png">
                                                         {% else %}
-                                                        <img src="../../media/button/balloon_red.PNG/" class="comment_png">
+                                                        <img src="../../media/button/balloon_red.PNG" class="comment_png">
                                                         {% endif %}
                                                         </button>
                                                         </form>
@@ -311,15 +311,15 @@
                                                             <a href="{% url 'share_calendar:account' members.pk 0 %}">
                                                             {% if members.profile.icon %}
                                                                 {% if num == 0 %}
-                                                                <img src="media/{{members.profile.icon}}/">
+                                                                <img src="media/{{members.profile.icon}}">
                                                                 {% else %}
-                                                                <img src="../../media/{{members.profile.icon}}/">
+                                                                <img src="../../media/{{members.profile.icon}}">
                                                                 {% endif %}
                                                             {% else %}
                                                                 {% if num == 0 %}
-                                                                <img src="media/button/no_icon.PNG/">
+                                                                <img src="media/button/no_icon.PNG">
                                                                 {% else %}
-                                                                <img src="../../media/button/no_icon.PNG/">
+                                                                <img src="../../media/button/no_icon.PNG">
                                                                 {% endif %}
                                                             {% endif %}
                                                             </a>
