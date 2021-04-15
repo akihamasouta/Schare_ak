@@ -1,0 +1,44 @@
+{% extends 'share_calendar/index.html' %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="../../../../../static/share_calendar/css/form.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/style_today_form.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block icon %}
+    <div class="icon"><img id="icon_img" src="../../../media/button/logo.png/"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../../media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../../media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}">logout</a></li>
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="content_container">
+        <div class="content">
+            <div class="redirect">
+                <a href="../../memory/"><button>back</button></a>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form">
+                    {% csrf_token %}
+                    <div class="form_one_line"><span id="picture"><img src="../../../media/button/images.PNG"></span><span>{{form.image}}</span></div>
+                    <div class="form_one_line" id="schedule_form"><span id="schedule"><img src="../../../media/button/sch.PNG"></span><span>{{form.today}}</span></div>
+                    <div class="form_error">{{error}}</div>
+                </div>
+                <div class="form_button">
+                    <input class="button_save" type="submit" accept="image/*" value="save">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

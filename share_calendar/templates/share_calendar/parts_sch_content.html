@@ -1,0 +1,141 @@
+{% load daterange %}
+                                {% for sch in data %}     
+                                        {% if sch.end_day %}
+                                            {% if sch.selected_date|daterange:sch.end_day %}
+                                                {% for item2 in sch.selected_date|daterange:sch.end_day %}
+                                                    {% if item == item2 %}
+                                                        <div class="day_obj" >
+                                                            <span>
+                                                            <a class="day_content_a" href="../share_calendar/sch_detail/{{sch.id}}">
+                                                                <span class="sch_author">@{{sch.author}}</span><span class="sch_title">{{sch.title}}</span>
+                                                                <span class="day_obj_date" id="sch_end"> ~{{sch.end_day|date:"n/j"}}</span>                                                                                                           
+                                                            </a>     
+                                                            </span>
+                                                            <span class="day_obj_join">
+                                                            {% if login_user != sch.author %}
+                                                            in
+                                                            {% endif %}
+                                                            </span>
+                                                            <span class="day_obj_coment">
+                                                            {% if num == 0 %}
+                                                            <img src="media/button/comment.png/" class="comment_png">
+                                                            {% else %}
+                                                            <img src="../../media/button/comment.png/" class="comment_png">
+                                                            {% endif %}
+                                                            </span>
+                                                            <span class="day_obj_member">
+                                                                {% for members in sch.member_set.get.member.all %}
+                                                                <span class="member_name">
+                                                                    {{members}}
+                                                                </span> 
+                                                                {% endfor %}
+                                                            </span>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                        {% if item == sch.selected_date %}
+                                                <div class="day_obj" >
+                                                    <a class="day_content_a" href="../share_calendar/sch_detail/{{sch.id}}">
+                                                    <span class="sch_author">@{{sch.author}}</span><span class="sch_title">{{sch.title}}</span>            
+                                                    {% if sch.start_time and sch.end_time %}
+                                                        {% if sch.selected_date == sch.end_day %}
+                                                        <span class="day_obj_date" id="sch_starttime">{{sch.start_time|date:"G:i"}}~{{sch.end_time|date:"G:i"}}</span>
+                                                        {% else %}
+                                                        <span class="day_obj_date" id="sch_starttime">{{sch.start_time|date:"G:i"}}~</span>
+                                                        {% endif %}                                                                                                             
+                                                    {% elif sch.start_time %}
+                                                        <span class="day_obj_date" id="sch_starttime">{{sch.start_time|date:"G:i"}}~</span>  
+                                                    {% elif sch.endtime %}
+                                                        <span class="day_obj_date" id="sch_starttime">~{{sch.end_time|date:"G:i"}}</span>
+                                                    {% else %}
+                                                        <span class="day_obj_date" id="sch_starttime"></span>                 
+                                                    {% endif %}
+                                                    </a>       
+                                                    <span class="day_obj_join">
+                                                    {% if login_user != sch.author %}
+                                                    in
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_coment">
+                                                    {% if num == 0 %}
+                                                        <img src="media/button/comment.png/" class="comment_png">
+                                                    {% else %}
+                                                        <img src="../../media/button/comment.png/" class="comment_png">
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_member">
+                                                    </span>
+                                                        {% for members in sch.member_set.get.member.all %}
+                                                        <span class="member_name">
+                                                            {{members}},
+                                                        </span> 
+                                                        {% endfor %}
+                                                    </span>                                                
+                                                </div>
+                                        {% endif %}
+                                        
+                                        {% if sch.end_day %}
+                                            {% if item == sch.end_day %}
+                                                <div class="day_obj" >
+                                                    <a class="day_content_a" href="../share_calendar/sch_detail/{{sch.id}}">
+                                                    <span class="sch_author">@{{sch.author}}</span><span class="sch_title">{{sch.title}}</span>            
+                                                    {% if sch.end_time %}
+                                                        <span class="day_obj_date" id="sch_starttime">~{{sch.end_time|date:"G:i"}}</span> 
+                                                    {% else %}                    
+                                                        <span class="day_obj_date" id="sch_starttime"></span>
+                                                    {% endif %}
+                                                    </a>
+                                                    <span class="day_obj_join">
+                                                    {% if login_user != sch.author %}
+                                                    in
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_coment">
+                                                    {% if num == 0 %}
+                                                        <img src="media/button/comment.png/" class="comment_png">
+                                                    {% else %}
+                                                        <img src="../../media/button/comment.png/" class="comment_png">
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_member">
+                                                        {% for members in sch.member_set.get.member.all %}
+                                                        <span class="member_name">
+                                                            {{members}}
+                                                        </span> 
+                                                        {% endfor %}
+                                                    </span>   
+                                                </div>
+                                            {% endif %}
+                                        
+                                        {% if not sch.end_day %}
+                                        <div class="day_obj" >
+                                            <a class="day_content_a" href="../share_calendar/sch_detail/{{sch.id}}">
+                                            <span class="sch_author">@{{sch.author}}</span><span class="sch_title">{{sch.title}}</span>            
+                                            <span class="day_obj_date"></span>                     
+                                            </a>
+                                            <span class="day_obj_join">
+                                            {% if login_user != sch.author %}
+                                            in
+                                            {% endif %}
+                                            </span>
+                                            <span class="day_obj_coment">
+                                            {% if num == 0 %}
+                                                <img src="media/button/comment.png/" class="comment_png">
+                                            {% else %}
+                                                <img src="../../media/button/comment.png/" class="comment_png">
+                                            {% endif %}
+                                            </span>
+                                            <span class="day_obj_member">
+                                                {% for members in sch.member_set.get.member.all %}
+                                                <span class="member_name">
+                                                    {{members}}
+                                                </span> 
+                                                {% endfor %}
+                                            </span>   
+                                        </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}

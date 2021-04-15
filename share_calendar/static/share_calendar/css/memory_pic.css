@@ -1,0 +1,78 @@
+@charset 'UTF-8';
+
+a {
+    text-decoration: none;
+    color: black;
+    }
+
+a:visited {
+    text-decoration: none;
+    color: black;
+    }
+.memory_pic_container {
+    width: 1440px;
+    height: 780px;
+    display: flex;
+    justify-content: center;
+    background-color: #f9f9f9;
+    }
+
+.memory_pic_content {
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+    overflow: scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+
+.memory_pic_content::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+.memory_pic_header {
+    width: 900px;
+    height: 30px;
+    font: 16px 'arial' ,sans-serif;
+    color: #444444;
+    }
+
+.main_pic {
+    width: 900px;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    }
+    
+.main_pic img {
+    max-width: 884px;
+    height: 500px;
+    }
+    
+.pictures_container {
+    width: 900px;
+    }
+    
+.pictures {
+    width: 900px;
+    height: 215px;
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    }
+    
+.pictures img{
+    width: 215px;
+    height: 215px;
+    object-fit: cover;
+    box-sizing: border-box;
+    margin-left: 8px;
+    box-shadow:0 6px 6px rgba(0,0,0,.2);
+    }
+
+
+#schedule_date {
+    margin-right: 10px;}

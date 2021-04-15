@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+
+.talk_content_container {   
+    width: 1440px;
+    height: 780px;
+    display: flex;
+    background-color: #f9f9f9;
+    justify-content: center;
+    }
+
+.talk_content {
+    width: 900px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    overflow-y:scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    background-color: #f9f9f9;
+    }
+.talk_edit {
+    width: 900px;
+    height: 40px;
+    }
+    
+.talk_message {
+    width: 900px;
+    height: 680px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+.talk_message::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+.talk_block {
+    display: flex;
+    width: 750px;
+    height: 100px;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0 3px 3px rgba(0,0,0,.2);
+    margin-bottom: 6px;
+    border-radius: 7px;
+    }
+
+
+.talk_message_left {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    }
+.talk_message_right {
+    display: flex;
+    flex-direction: column;
+    }
+    
+.talk_message_title {
+    font: 16px 'arial' , sans-serif;
+    color: #222222;
+    }
+    
+.talk_message_content {
+    font: 12px 'arial' , sans-serif;
+    color: #222222;
+    }
+
+.talk_block img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #888888;
+    background-color: white;
+    align-self: center;
+    }
+
+
+
+p {
+    margin: 0px;
+    }
+
+.plus {
+    text-decoration: none;
+    color: #444444;
+    width: 30px;
+    }
+
+.plus:visited {
+    text-decoration:none;
+    color: #444444;
+    font-size: 34px;
+    width: 30px;
+    }
+    
+a {
+    text-decoration: none;
+    }
+    
+a:visited {
+    text-decoration: none;
+    }
+    
+    

@@ -1,0 +1,50 @@
+{% extends 'share_calendar/index.html' %}
+{% block head %}
+{% load static %}
+{% load pre_back %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <link href="../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/memory_pic.css/" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block icon %}
+            <div class="icon"><img id="icon_img" src="../../media/button/logo.png/"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}">logout</a></li>
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="memory_pic_container">
+        <div class="memory_pic_content">
+            <div class="memory_pic_header">
+                <button><a href="{% get_return_link request %}">back</a></button>
+                <span id="schedule_date">{{schedule.date|date:"Y-n-d"}}</span><span>{{schedule}}</span>
+            </div>
+            <div class="main_pic">
+                <img src="../../media/{{main_pic.main_pic}}/">
+            </div>
+            <div class="pictures_container">
+                {% for pictures_list in pictures %}
+                <div class="pictures">
+                    {% for picture in pictures_list %}
+                    <a href="{% url 'share_calendar:look_pic' num forloop.parentloop.counter0 forloop.counter0 %}">
+                        <img src="../../media/{{picture.image}}/">
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

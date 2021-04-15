@@ -1,0 +1,57 @@
+{% extends 'share_calendar/index.html' %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta chareset="UTF-8">
+    <link href="../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+    <link href= "../../../../static/share_calendar/css/talk_content.css/" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../../media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../../media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}">logout</a></li>
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="talk_content_container">
+        <div class="talk_content_center">
+            <div id="talk_content">
+                {% for item2 in data %}
+                    {% if login_user == item2.author.username %}
+                    <div class="talk_content_mes">
+                        <div class="balloon1-right">
+                        {{item2}}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="talk_content_rep">
+                        <div class="balloon1-left">
+                        {{item2}}
+                        {{item2.author}}
+                        {{login_user}}
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="talk_message_form">
+                <form action="" method="POST">
+                {% csrf_token %}
+                {{form.talk}}
+                {{form.talk_content}}
+                {{form.author}}
+                <input id="submit" type="submit" value="送信">
+                </form>
+            </div>
+        </div>
+    </div>
+<script src="../../../../static/share_calendar/js/scroll.js/"></script>
+</div>
+{% endblock %}

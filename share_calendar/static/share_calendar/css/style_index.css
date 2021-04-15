@@ -1,0 +1,397 @@
+@charset "UTF-8";
+
+
+.content_container {
+    width: 1440px;
+    height: 800px;
+    display: flex;
+    background-color: #f9f9f9;
+    justify-content: center;
+    }
+
+.content {
+    width:900px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    }
+
+
+.future_head {
+    display: flex;
+    width: 900px;
+    height: 30px;
+    border-bottom: 2px solid #dddddd;
+    }
+
+.today_date {
+    font: 16px 'ariar', sans-serif;
+    color: #444
+    }
+
+.month {
+    font: 16px 'ariar', sans-serif;
+    vertical-align: middle;
+    align-self:center;
+    }
+    
+
+.future_container {
+    height:720px;
+    margin-top: 5px;
+    }
+
+
+.future_head_form {
+    display: inline-block;
+    margin: 0 0 0 auto;
+    position:relative;
+    top: -2px;
+    }
+
+
+.future_content {
+    display: flex;
+    flex-direction:column;
+    }
+
+.future_day {
+    display: flex;
+    width: 890px;
+    border: 1px solid #dddddd;
+    box-shadow:0 2px 2px rgba(0,0,0,.2);
+    border-radius:7px;
+    background-color:white;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    box-sizing:border-box;
+    }
+.day_name {
+    display: flex;
+    width: 50px;
+    }
+.day_name p{
+    width: 50px;
+    font: 16px 'arial',sans-serif;
+    color: #222222;
+    align-self:center;
+    text-align:center;
+    }
+    
+.future_content_container {
+    height: 720px;
+    overflow:scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+.future_content_container::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+.day_content {
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    width: 840px;
+    }
+
+
+.sch_author_icon {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+.sch_author_icon img {
+    width: 20px;
+    height:20px;
+    border-radius: 50%;
+    object-fit: cover;
+    }
+
+.sch_author {
+    font: 14px 'arial', sans-serif;
+    line-height: 28px;
+    width: 128px;
+    margin-right: 10px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    }
+    
+.sch_author::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+.sch_author a:visited {
+    color: #222222;
+    }
+
+.sch_author a {
+    color: #222222;
+    }
+
+
+
+.sch_title {
+    white-space:nowrap;
+    font: 14px 'arial', sans-serif;
+    line-height: 28px;
+    width: 250px;
+    margin-right: 10px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    }
+
+.day_content_a {
+    max-height: 28px;
+    font: 14px 'arial',sans-serif;
+    text-decoration: none;
+    color: #222222;
+    }
+
+.day_content_a:visited {
+    max-height: 28px;
+    font: 14px 'arial', sans-serif;
+    text-decoration: none;
+    color: #222222;
+    }
+
+    
+.sch_title::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+.day_obj {
+    display: flex;
+    width: 840px;
+    height: 28px;
+    max-height: 28px;
+    }
+.day_obj_date {
+    display: flex;
+    align-items: center;
+    width: 70px;
+    margin-right: 10px;
+    font: 12px 'arial', sans-serif;
+    color: #222222;
+    }
+
+
+.comment_png {
+    position: relative;
+    top: 4px;
+    width: 16px;
+    height:16px;
+    }
+
+.day_obj_join {
+    display: inline-block;
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    }
+
+.day_obj_image {
+    width: 30px;
+    margin-right: 18px;
+    }
+
+.day_obj_image img{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    position: relative;
+    top:6px;
+    left:6px;
+    }
+
+.day_obj_member {
+    white-space:nowrap;
+    display: flex;
+    align-items:center;
+    width: 235px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+.day_obj_member::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+.member_name{
+    font: 12px 'arial', sans-serif;
+    color: #999999;
+    }
+
+.member_name a {
+    color: #999999;
+    }
+
+.member_name a:visited {
+    color: #999999;
+    }
+
+.member_name img {
+    width:20px;
+    height:20px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 3px;
+    position:relative;
+    top: 3px;
+    }
+    
+label{
+  box-shadow:0 2px 2px rgba(0,0,0,.2);
+  padding:1px;
+  background:white;
+  width:50px;
+  display:inline-block;
+  position:relative;
+  margin-right: 10px;
+  border-radius: 6px;
+}
+.label_month {
+    width: 30px;}
+
+select{
+  border:none;
+  outline:none;
+  display: inline-block;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  cursor:pointer;
+  font-size:14px;
+  color:#444444;
+  width:40px;
+  z-index:2;
+  background:transparent;
+}
+
+label:after{
+  content:"\25bc";
+  font-size:8px;
+  color:#ddd;
+  background:white;
+  width:15px;
+  text-align:center;
+  line-height:3.5em;
+  top:0;
+  right:0;
+  bottom:0;
+  border-radius: 0 6px 6px 0;
+  position:absolute;
+  pointer-events:none;
+}
+
+option{
+  border-bottom:1px solid #eaeaea;
+  border-left:3px solid white;
+  appearance:none;
+}
+
+option:hover{
+  background-color:white;
+  border-left:3px solid #f3a1a1;
+}
+
+.button_shadow {
+    position: relative;
+    top: 5px;
+    right: 5px;
+    border:none;
+    background: none;
+    padding: 0;
+    margin-right: 3px;
+    }
+.button_shadow img {
+    width: 18px;
+    height: 18px;
+    }
+
+.logoffmessage {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    float: right;
+    width: 83%;
+    height: 100%
+    }
+
+.animation_container {
+    width: 16px;
+    height:16px;
+    overflow:hidden;
+    }
+.animation_img {
+    width: 416px;
+    height: 16px;
+    position:relative;
+    animation: fuwari 1s steps(26);
+    }
+
+.animation_container button {
+    border:none;
+    background-color: white;
+    padding: 0;
+    margin:0;
+    }
+
+@keyframes fuwari {
+    to{
+        transform: translate(-416px, 0);
+    }
+}
+@-webkit-keyframes fuwari {
+    to{
+        transform: translate(-416px, 0);
+    }
+}
+@-moz-keyframes fuwari {
+    to{
+        transform: translate(-416px, 0);
+    }
+}
+
+.animation_container2 {
+    width: 25px;
+    height:25px;
+    overflow:hidden;
+    position:relative;
+    top: -47px;
+    left:-30px;
+    }
+.animation_img2 {
+    width: 650px;
+    height: 25px;
+    position:relative;
+    animation: fuwari2 1s steps(26) reverse;
+    }
+
+@keyframes fuwari2 {
+    to{
+        transform: translate(-650px, 0);
+    }
+}
+@-webkit-keyframes fuwari2 {
+    to{
+        transform: translate(-650px, 0);
+    }
+}
+@-moz-keyframes fuwari2 {
+    to{
+        transform: translate(-650px, 0);
+    }
+}
+a {
+    text-decoration: none;
+    }
+a:visited {
+    text-decoration: none;
+    }
+
+.day_obj_join button {
+    background-color: white;
+    border: none;}
+

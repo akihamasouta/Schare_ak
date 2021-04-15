@@ -1,0 +1,32 @@
+{% for data_list in data %}
+    <div class="today_memory_content">
+    {% for item in data_list %}
+                <div class="{% cycle 'today_container_1' 'today_container_2' 'today_container_3' 'today_container_4' %}">
+                <a href="{% url 'share_calendar:memory_pic' item.pk %}">
+                    <div class="today_title">
+                    {{item}}
+                    </div>
+                    <div id="date">
+                        {{item.sc_title.selected_date|date:"Y-m-d"}}
+                    </div>
+                    <div class="main_pic">
+                        <img src="../../../media/{{item.main_pic}}/">
+                    </div>
+                </a>  
+                    <div class="footer">
+                        <a href="{% url 'share_calendar:account' item.sc_title.author.pk 0 %}">
+                        <span id="author">
+                        <img src="../../../media/{{item.sc_title.author.profile.icon}}/">
+                        @{{item.sc_title.author}}
+                        </span>
+                        </a>
+                        <a href="{% url 'share_calendar:sch_detail' item.sc_title.pk %}">
+                        <span id="comment">
+                            <img  src="../../../media/button/comment.png/">
+                        </span>
+                        </a>
+                    </div>   
+                </div>
+    {% endfor %}
+    </div>
+{% endfor %}

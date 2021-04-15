@@ -1,0 +1,117 @@
+@charsetn "UTF-8";
+
+.talk_content_container {
+    display: flex;
+    width: 1440px;
+    height: 837px;
+    justify-content: center;
+    background-color: #f9f9f9;
+    }
+
+.talk_content_center {
+    width: 900px;
+    height: 837px;
+    background-color: white;
+    }
+#talk_content {
+    width:900px;
+    height: 740px;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+#talk_content::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+.talk_content_mes{
+    display: block;
+    text-align: right;
+    }
+.balloon1-right {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 7px 10px;
+  min-width: 12px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  border-radius: 15px;
+}
+
+.balloon1-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -10px;
+  border: 8px solid transparent;
+  border-left: 20px solid #e0edff;
+}
+
+.balloon1-right p {
+  margin: 0;
+  padding: 0;
+}
+    
+.talk_content_rep {
+    display: block;
+    text-align: left;
+    }
+.balloon1-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;    
+  max-width: 65%;
+  color: #555;
+  font-size: 16px;
+  background: #f4f4f4;
+  border-radius: 15px;
+}
+
+.balloon1-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #f4f4f4;
+}
+
+.balloon1-left p {
+  margin: 0;
+  padding: 0;
+}
+
+.talk_message_form {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    }
+#id_talk_content {
+    display: inline-block;
+    width: 750px;
+    height: 35px;
+    font-size: 1.5em;
+    margin-left: 20px;
+    }
+#submit {
+    display: inline-block;
+    background-color: #444444;
+    position: relative;
+    top:-12px;
+    left:2px;
+    font-size: 18px;
+    color: white;
+    width: 75px;
+    height: 40px;
+    padding: 10px;
+    }
+
+#id_talk, #id_author {
+    display: none;}

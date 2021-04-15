@@ -1,0 +1,373 @@
+{% load static %}
+{% load daterange %}
+{% load queryset_in %}
+{% load not_same %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/style_index.css/" type="text/css" rel="stylesheet">
+{% if not request.user.is_authenticated %}
+    <link href="../../../../static/share_calendar/css/not_login.css/" type="text/css" rel="stylesheet">
+{% endif %}
+</head>
+{% endblock %}
+{% if request.user.is_authenticated %}
+<body id="body">
+    <div class="container">
+        <header>
+        <div class="header_cont">
+{% block icon %}
+            {% if num == 0 %}
+            <div class="icon"><img id="icon_img" src="media/button/logo.png/"></div>
+            {% else %}
+            <div class="icon"><img id="icon_img" src="../../media/button/logo.png/"></div>
+            {% endif %}
+{% endblock %}
+{% block pagenation %}
+            <div class="control"></div>
+{% endblock %}
+{% block menu %}
+            {% if num == 0 %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="media/button/smile.PNG/"></a></li>
+                {% if balloon %}
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:balloon' %}"><div class="animation_container2"><img class="animation_img2" src="media/button/animation_balloon2.JPG/"></div></a></li>
+                {% endif %}
+            </ul>
+            {% else %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG/"></a></li>
+                {% if balloon %}
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:balloon' %}"><div class="animation_container2"><img class="animation_img2" src="../../media/button/animation_balloon2.JPG/"></div></a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+{% endblock %}
+        </div>
+        </header>
+{% block content %}
+        <div class="content_container">
+            <div class="content">
+                <div class="future_head">
+                    <span class="today_date">{{today}}</span>
+                    <div class="future_head_form">
+                        <form class="month_form" action="{% url 'share_calendar:calendar' %}" method="POST">
+                        {% csrf_token %}
+                            <span><label>{{form.year}}</label></span>
+                            <span><label class="label_month">{{form.month}}</label></span>
+                            
+                            <button class="button_shadow" type="submit" name="search">
+                            {% if num == 0 %}
+                            <img src="media/button/search.PNG">
+                            {% else %}
+                            <img src="../../media/button/search.PNG">
+                            {% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="future_container">
+                        <div class="future_content">
+                        <div class="future_content_container">
+                        {% for item in data %}
+                            {% if item == ori_today %}
+                            <div class="future_day today_block" id="{{item.month}}-{{item.day}}">
+                            {% else %}
+                            <div class="future_day" id="{{item.month}}-{{item.day}}">
+                            {% endif %}
+                            <script src="../../../../static/share_calendar/js/scroll_index.js"></script>
+                            {% if num == 0 %}
+                                <div class="day_name" onclick="location.href='../share_calendar/schedule_form/{{item|date:'Y/m/d'}}'">
+                            {% else %}
+                                <div class="day_name" onclick="location.href='../../../share_calendar/schedule_form/{{item|date:'Y/m/d'}}'">
+                            {% endif %}
+                                    <p>{{item|date:"n/j"}}</p>
+                                </div>
+                                <div class="day_content">
+                                    {% for sch in share_sch %}     
+                                         {% if item == sch.selected_date and sch.selected_date == sch.end_day %}
+                                            <div class="day_obj" >
+                                                {% if num == 0 %}
+                                                    <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}/"></span>
+                                                {% else %}
+                                                    <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}/"></span>
+                                                {% endif %}
+                                                    <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
+                                                    <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
+                                                {% if sch.start_time and sch.end_time %}
+                                                    <span class="day_obj_date" id="sch_end">{{sch.start_time|date:"G:i"}}~{{sch.end_time|date:"G:i"}}</span>
+                                                {% elif sch.start_time and not sch.end_time %}
+                                                    <span class="day_obj_date" id="sch_end">{{sch.start_time|date:"G:i"}}~</span>
+                                                {% elif not sch.start_time and sch.end_time %}
+                                                    <span class="day_obj_date" id="sch_end">~{{sch.end_time|date:"G:i"}}</span>
+                                                {% else %}
+                                                    <span class="day_obj_date" id="sch_end"></span>
+                                                {% endif %}                                                                                                        
+                                                <span class="day_obj_join">
+                                                {% if login_user != sch.author and not login_user|queryset_in:sch.member_sch.member and not ballooned|not_same:sch %}
+                                                    <form method="POST">
+                                                    {% csrf_token %}
+                                                    <button type="submit" name="{{sch.pk}}">
+                                                    {% if num == 0 %}
+                                                    <img src="media/button/balloon_red.PNG/" class="comment_png">
+                                                    {% else %}
+                                                    <img src="../../media/button/balloon_red.PNG/" class="comment_png">
+                                                    {% endif %}
+                                                    </button>
+                                                    </form>
+                                                {% endif %}
+                                                </span>
+                                                <span class="day_obj_image">
+                                                {% if sch.today %}
+                                                {% if num == 0 %}
+                                                    <a href="{% url 'share_calendar:memory_pic' sch.today.pk %}"><img src="media/button/images.PNG"></a>
+                                                {% else %}
+                                                    <a href="{% url 'share_calendar:memory_pic' sch.today.pk %}"><img src="../../media/button/images.PNG"></a>
+                                                {% endif %}
+                                                {% endif %}
+                                                </span>
+                                                <span class="day_obj_member">
+                                                    {% for members in sch.member_sch.member.all %}
+                                                    <span class="member_name">
+                                                        <a href="{% url 'share_calendar:account' members.pk 0 %}">
+                                                        {% if members.profile.icon %}
+                                                            {% if num == 0 %}
+                                                            <img src="media/{{members.profile.icon}}/">
+                                                            {% else %}
+                                                            <img src="../../media/{{members.profile.icon}}/">
+                                                            {% endif %}
+                                                        {% else %}
+                                                            {% if num == 0 %}
+                                                            <img src="media/button/no_icon.PNG/">
+                                                            {% else %}
+                                                            <img src="../../media/button/no_icon.PNG/">
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        </a>
+                                                    </span> 
+                                                    {% endfor %}
+                                                </span>
+                                            </div>
+                                         {% elif sch.selected_date != sch.end_day %}
+                                            {% if sch.selected_date|daterange:sch.end_day %}
+                                                {% for item2 in sch.selected_date|daterange:sch.end_day %}
+                                                    {% if item == item2 %}
+                                                        <div class="day_obj" >
+                                                        {% if num == 0 %}
+                                                            <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}/"></span>
+                                                        {% else %}
+                                                            <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}/"></span>
+                                                        {% endif %}
+                                                                <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
+                                                                <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
+                                                                <span class="day_obj_date" id="sch_end"> ~{{sch.end_day|date:"n/j"}}</span>                                                                                                           
+                                                            <span class="day_obj_join">
+                                                            {% if login_user != sch.author and not login_user|queryset_in:sch.member_sch.member and not ballooned|not_same:sch %}
+                                                                <form method="POST">
+                                                                {% csrf_token %}
+                                                                <button type="submit" name="{{sch.pk}}">
+                                                                {% if num == 0 %}
+                                                                <img src="media/button/balloon_red.PNG/" class="comment_png">
+                                                                {% else %}
+                                                                <img src="../../media/button/balloon_red.PNG/" class="comment_png">
+                                                                {% endif %}
+                                                                </button>
+                                                                </form>
+                                                            {% endif %}
+                                                            </span>
+                                                            <span class="day_obj_image">
+                                                            {% if sch.today %}
+                                                            {% if num == 0 %}
+                                                                <a href="{% url 'share_calendar:memory_pic' sch.today.pk %}"><img src="media/button/images.PNG"></a>
+                                                            {% else %}
+                                                                <a href="{% url 'share_calendar:memory_pic' sch.today.pk %}"><img src="../../media/button/images.PNG"></a>
+                                                            {% endif %}
+                                                            {% endif %}
+                                                            </span>
+                                                            <span class="day_obj_member">
+                                                                {% for members in sch.member_sch.member.all %}
+                                                                <span class="member_name">
+                                                                    <a href="{% url 'share_calendar:account' members.pk 0 %}">
+                                                                    {% if num == 0 %}
+                                                                    <img src="media/{{members.profile.icon}}/">
+                                                                    {% else %}
+                                                                    <img src="../../media/{{members.profile.icon}}/">
+                                                                    {% endif %}
+                                                                    </a>
+                                                                </span> 
+                                                                {% endfor %}
+                                                            </span>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% if item == sch.selected_date %}
+                                                <div class="day_obj" >
+                                                {% if num == 0 %}
+                                                    <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}/"></span>
+                                                {% else %}
+                                                    <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}/"></span>
+                                                {% endif %}
+                                                    <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
+                                                    <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>            
+                                                    {% if sch.start_time %}
+                                                        <span class="day_obj_date" id="sch_starttime">{{sch.start_time|date:"G:i"}}~</span>  
+                                                    {% else %}
+                                                        <span class="day_obj_date" id="sch_starttime"></span>                 
+                                                    {% endif %}
+                                                    <span class="day_obj_join">
+                                                    {% if login_user != sch.author and not login_user|queryset_in:sch.member_sch.member and not ballooned|not_same:sch %}
+                                                        <form method="POST">
+                                                        <button type="submit" name="{{sch.pk}}">
+                                                        {% csrf_token %}
+                                                        {% if num == 0 %}
+                                                        <img src="media/button/balloon_red.PNG/" class="comment_png">
+                                                        {% else %}
+                                                        <img src="../../media/button/balloon_red.PNG/" class="comment_png">
+                                                        {% endif %}
+                                                        </button>
+                                                        </form>
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_image">
+                                                    {% if sch.today %}
+                                                        {% if num == 0 %}
+                                                            <a href="{% url 'share_calendar:memory_pic' sch.today.pk %}"><img src="media/button/images.PNG"></a>
+                                                        {% else %}
+                                                            <a href="{% url 'share_calendar:memory_pic' sch.today.pk %}"><img src="../../media/button/images.PNG"></a>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_member">
+                                                        {% for members in sch.member_sch.member.all %}
+                                                        <span class="member_name">
+                                                            <a href="{% url 'share_calendar:account' members.pk 0 %}">
+                                                            {% if members.profile.icon %}
+                                                                {% if num == 0 %}
+                                                                <img src="media/{{members.profile.icon}}/">
+                                                                {% else %}
+                                                                <img src="../../media/{{members.profile.icon}}/">
+                                                                {% endif %}
+                                                            {% else %}
+                                                                {% if num == 0 %}
+                                                                <img src="media/button/no_icon.PNG/">
+                                                                {% else %}
+                                                                <img src="../../media/button/no_icon.PNG/">
+                                                                {% endif %}
+                                                            {% endif %}
+                                                            </a>
+                                                        </span> 
+                                                        {% endfor %}
+                                                    </span>                                                
+                                                </div>
+                                            {% endif %}
+                                            {% if item == sch.end_day %}
+                                                <div class="day_obj" >
+                                                    {% if num == 0 %}
+                                                        <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}/"></span>
+                                                    {% else %}
+                                                        <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}/"></span>
+                                                    {% endif %}
+                                                        <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
+                                                    <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>            
+                                                    {% if sch.end_time %}
+                                                        <span class="day_obj_date" id="sch_starttime">~{{sch.end_time|date:"G:i"}}</span> 
+                                                    {% else %}                    
+                                                        <span class="day_obj_date" id="sch_starttime"></span>
+                                                    {% endif %}
+                                                    <span class="day_obj_join">
+                                                     {% if login_user != sch.author and not login_user|queryset_in:sch.member_sch.member and not ballooned|not_same:sch %}
+                                                        <form method="POST">
+                                                        {% csrf_token %}
+                                                        <button type="submit" name="{{sch.pk}}">
+                                                        {% if num == 0 %}
+                                                        <img src="media/button/balloon_red.PNG/" class="comment_png">
+                                                        {% else %}
+                                                        <img src="../../media/button/balloon_red.PNG/" class="comment_png">
+                                                        {% endif %}
+                                                        </button>
+                                                        </form>
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_image">
+                                                    {% if sch.today %}
+                                                        {% if num == 0 %}
+                                                            <a href="{% url 'share_calendar:memory_pic' sch.today.pk %}"><img src="media/button/images.PNG"></a>
+                                                        {% else %}
+                                                            <a href="{% url 'share_calendar:memory_pic' sch.today.pk %}"><img src="../../media/button/images.PNG"></a>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_member">
+                                                        {% for members in sch.member_sch.member.all %}
+                                                        <span class="member_name">
+                                                            <a href="{% url 'share_calendar:account' members.pk 0 %}">
+                                                            {% if members.profile.icon %}
+                                                                {% if num == 0 %}
+                                                                <img src="media/{{members.profile.icon}}/">
+                                                                {% else %}
+                                                                <img src="../../media/{{members.profile.icon}}/">
+                                                                {% endif %}
+                                                            {% else %}
+                                                                {% if num == 0 %}
+                                                                <img src="media/button/no_icon.PNG/">
+                                                                {% else %}
+                                                                <img src="../../media/button/no_icon.PNG/">
+                                                                {% endif %}
+                                                            {% endif %}
+                                                            </a>
+                                                        </span> 
+                                                        {% endfor %}
+                                                    </span>   
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+    {% endblock %}
+    </div>
+    {% endif %} 
+    {% if not request.user.is_authenticated %}
+    <div class="container">
+    <div class="not_login_container">
+        <div class="logoffmessage_container">
+            <div class="logoff_mes_con_mes">
+                <p id="mes_not_login">認証に失敗しました</p>
+                <ul class="reason_not_login">
+                    <li>
+                    長時間操作しなかったため、認証が期限切れになった可能性があります。
+                    </li>
+                    <li>
+                     ログイン認証せずにシステムを利用しようとした可能性があります。
+                    </li>
+                </ul>
+                <p id="login_again">ログイン画面から再度ログインしてください。</p>
+            </div>
+            <div class="login_button">
+                <button>
+                <a href="{% url 'share_calendar:login' %}">ログイン</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endif %}
+        <!--container-->
+</body>
+</html>

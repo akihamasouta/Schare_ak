@@ -1,0 +1,50 @@
+{% extends 'share_calendar/index.html' %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/balloon.css/" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block icon %}
+            <div class="icon"><img id="icon_img" src="../media/button/logo.png/"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}"></a></li>
+            </ul>
+{% endblock %}
+{% block content %}
+<div class="balloon_container">
+    <div class="balloon_content">
+    {% for item in bal_list %}
+        <div class="balloon_block">
+            <div class="schedule"><p>{{item.schedule}}</p></div>
+            <div class="join_user">
+            <a href="{% url 'share_calendar:account' 0 item.join_user.pk %}">
+            <img src="../media/{{item.join_user.profile.icon}}"><span>
+            @{{item.join_user}}</span>
+            </a></div>
+            <div class="post_form">
+            <form method="POST">
+                {% csrf_token %}
+                <button id="ok" type="submit" name="ok{{item.pk}}">yes</button>
+                <button id="delete" type="submit" name="delete{{item.pk}}">no</button>
+            </form>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
+</div>
+<body>
+</body>
+</html>

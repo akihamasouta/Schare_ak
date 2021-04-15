@@ -1,0 +1,87 @@
+{% extends 'share_calendar/index.html' %}
+{% load static %}
+{% load daterange %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/index_memory.css/" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block icon %}
+            <div class="icon"><img id="icon_img" src="../media/button/logo.png/"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}">logout</a></li>
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="memory_container">
+        <div class="memory_content">
+                <div class="today_container">
+                    <div class="today_head">
+                        <p class="today_day"><span>{{today}}</span></p>
+                        <p class="plus"><a href="{% url 'share_calendar:today_form' %}">+</a></p>
+                    </div>
+                    <div class="today">
+                        <div class="today_content">
+                            {% for item in display_today %}
+                            {% if item %}
+                            <div class="one_content">
+                                <div class="gradation">
+                                </div>
+                                <a href="{% url 'share_calendar:memory_pic' item.pk %}">
+                                <img src="../media/{{item.main_pic}}/"> <!--nazekono.src.deyomikomerukawakannnai-->
+                                </a>
+                                <p class="sc_title"><a href="{% url 'share_calendar:sch_detail' item.sc_title.pk %}">{{item.sc_title}}</a></p>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+        {% for data_list in data_nest %}
+            <div class="today_memory_content">
+            {% for item in data_list %}
+                        <div class="{% cycle 'today_container_1' 'today_container_2' 'today_container_3' 'today_container_4' %}">
+                        <a href="{% url 'share_calendar:memory_pic' item.pk %}">
+                            <div class="today_title">
+                            {{item}}
+                            </div>
+                            <div id="date">
+                                {{item.sc_title.selected_date|date:"Y-m-d"}}
+                            </div>
+                            <div class="main_pic">
+                                <img src="../media/{{item.main_pic}}/">
+                            </div>
+                        </a>  
+                            <div class="footer">
+                                <a href="{% url 'share_calendar:account' item.sc_title.author.pk 0 %}">
+                                <span id="author">
+                                <img src="../media/{{item.sc_title.author.profile.icon}}/">
+                                @{{item.sc_title.author}}
+                                </span>
+                                </a>
+                                <a href="{% url 'share_calendar:sch_detail' item.sc_title.pk %}">
+                                <span id="comment">
+                                    <img  src="../media/button/comment.png/">
+                                </span>
+                                </a>
+                            </div>   
+                        </div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        </div>
+        </div>
+    </div>
+{% endblock %}

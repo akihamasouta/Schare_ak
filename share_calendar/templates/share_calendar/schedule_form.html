@@ -1,0 +1,51 @@
+{% extends 'share_calendar/index.html' %}
+{% load static %}
+{% block head %}
+<!DOCTYPE html>
+<html lant="ja">
+<head>
+    <link href="../../../../../static/share_calendar/css/form.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/style_schedule_form.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block icon %}
+        <div class="icon"><img id="icon_img" src="../../../../media/button/logo.png/"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../../../media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../../../media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../../../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}">logout</a></li>
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="content_container">
+    <div class="content">
+    <div class="form">
+    <div class="redirect"><a href="../../../../{{num1}}/{{num2}}/"><button>back</button></a></div>
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form_content">
+    <div class="form_content_line"><span><img src="../../../../media/button/sch.PNG/"></span><span>{{form.title}}</span></div>
+    <div class="form_content_line"><span><img src="../../../../media/button/time_start.PNG/"></span><span>{{form.selected_date}}</span><span id="year">年</span><span id="month">月</span><span id="day">日</span></div>
+    <div class="form_content_line">{{form.start_time}}</div>
+    <div class="form_content_line"><span><img src="../../../../media/button/time_end.PNG/"></span><span>{{form.end_day}}</span><span id="end_year">年</span><span id="end_month">月</span><span id="end_day">日</span></div>
+    <div class="form_content_line">{{form.end_time}}</div>
+    <div class="form_content_line"><span><img src="../../../../media/button/tag.PNG/"></span><span>{{form.tag}}/<span></div>
+    <div>{{form.errors}}
+    {{day_error}}{{time_error}}
+    </div>
+    <div class="form_button">
+    <input class="button_to_member" type="submit" value="save">
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    <script src="../../../../../static/share_calendar/js/index.js/"></script>
+{% endblock %}

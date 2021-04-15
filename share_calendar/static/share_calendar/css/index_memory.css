@@ -1,0 +1,243 @@
+@charset 'utf-8';
+
+p {
+    margin: 0;
+    }
+
+a {
+    color:black;
+    }
+a:visited {
+    color:black;
+    }
+
+    
+.memory_container {
+    width: 1440px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    }
+
+.memory_container::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+    
+.memory_content {
+    width: 900px;
+    height: 760px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    }
+
+.memory_content::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+.today_container {
+    width: 890px;
+    height: 150px;
+    box-shadow:0 4px 4px rgba(0,0,0,.2);
+    border-radius:7px;
+    background-color: white;
+    margin-left: 5px;
+    }
+
+.today_head {
+    font: 16px 'arial',sans-serif;
+    color: #444;
+    }
+
+.today_content {
+    display: flex;
+    height: 130px;
+    width: 890px;
+    max-width: 890px;
+    overflow-x:scroll;
+    overflow-y:hidden;
+    }
+
+.today_content::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+.today_day {
+    display: inline-block;
+    }
+.plus {
+    display: inline-block;
+    float: right;
+    margin-right: 5px;
+    }
+
+.one_content {
+    width: 84px;
+    height: 108px;
+    margin-left: 20px;
+    margin-top: 10px;
+    display: inline-block;
+    }
+
+.gradation {
+    width: 84px;
+    height:84px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    display: inline-block;
+    background-color: red;
+    animation-name:gradation;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index:0;
+    }
+
+.today_content img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top:-89px;
+    left: 2px;
+    object-fit:cover;
+    background-color: white;
+    z-index:1;
+    }
+
+.sc_title {
+    position: relative;
+    top:-90px;
+    text-align:center;
+    font: 14px 'arial', sans-serif;
+    color: #444;
+    margin-top: 7px;
+    white-space:nowrap;
+    overflow: scroll;
+    scrollbar-width: none;
+    }
+    
+.sc_title::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+.today_memory_content {
+    display: flex;
+    width: 900px;
+    height: 222px;
+    display: flex;
+    margin-top: 8px;
+    }
+
+.today_container_1, .today_container_2, .today_container_3, .today_container_4 {
+    display: flex;
+    flex-direction: column;
+    width: 215px;
+    height: 215px;
+    margin-right: 5px;
+    margin-left:5px;
+    box-shadow:0 8px 8px rgba(0,0,0,.2);
+    border-radius: 7px;
+    background-color: white;
+    }
+
+.today_title {
+    display: block;
+    height:17px;
+    font: 12px 'arial', sans-serif;
+    color: #444444;
+    text-align: center;
+    }
+
+.main_pic {
+    width: 215px;
+    height: 154px;
+    display: flex;
+    justify-content: center;}
+
+.main_pic img{
+    max-width: 215px;
+    height: 154px;
+    object-fit: cover;
+    }
+
+.footer {
+    display: flex;
+    align-items:center;
+    height: 30px;
+    }
+
+    
+    
+#date {
+    font: 12px 'arial', sans-serif;
+    color: #444444;
+    text-align: right;
+    margin-right: 5px;
+    }
+
+
+#author {
+    width: 175px;
+    font: 13px 'arial', sans-serif;
+    color: #444444;
+    line-height: 23px;
+    display: flex;
+    align-items:center;
+    white-space: nowrap;
+    overflow: scroll;
+    scrollbar-width: none;
+    }
+    
+#author::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+#author img{
+    width: 20px;
+    height:20px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 5px;
+    margin-left: 5px;
+    }
+
+#comment {
+    width: 40px;
+    height: 23px;
+    }
+
+#comment img {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 4px;
+    margin-left: 15px;
+    }
+
+@keyframes gradation {
+    8%{background-color: #red;}
+    15%{background-color: #ff8000;}
+    22%{background-color: #ffff00;}
+    30%{background-color: #80ff00;}
+    38%{background-color: #00ff00;}
+    46%{background-color: #00ff80;}
+    53%{background-color: #00ffff;}
+    60%{background-color: #0080ff;}
+    67%{background-color: #0000ff;}
+    75%{background-color: #8000ff;}
+    83%{background-color: #ff00ff;}
+    91%{background-color: #ff0080;}
+    100%{background-color: #red;}
+}
+
+a {
+   text-decoration: none;
+   }
+
+a:visited {
+   text-decoration: none;
+   }

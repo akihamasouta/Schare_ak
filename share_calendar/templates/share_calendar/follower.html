@@ -1,0 +1,55 @@
+{% extends 'share_calendar/index.html' %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="../../../../../static/share_calendar/css/follow.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block icon %}
+    <div class="icon"><img id="icon_img" src="../../media/button/logo.png/"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG/"></a></li>
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="content_container">
+    <div class="content">
+    <div class="content_head">
+    <a href="../../account/{{pk}}/0/"><button>back</button></a>
+    </div>
+    {% for item in follower %}
+    <div class="follow_container">
+    {{a}}
+    <div class="left">
+    {% if item.my_account.profile %}
+    <div class="account_icon"><a href="{% url 'share_calendar:account' item.my_account.pk 0 %}"><img src="../../media/{{item.my_account.profile.icon}}"></a></div>
+    {% else %}
+    <div class="account_icon"><a href="{% url 'share_calendar:account' item.my_account.pk 0 %}"><img src="../../media/button/no_icon.PNG"></a></div>
+    {% endif %}
+    </div>
+    <div class="center">
+    <div class="name"><a href="{% url 'share_calendar:account' item.my_account.pk 0 %}">@{{item.my_account}}</a></div>
+    {% if request.user == visit_user %}
+    <div class="follow_comment">あなたをフォローしています</div>
+    {% else %}
+    <div class="follow_comment">@{{visit_user}}をフォローしています</div>
+    {% endif %}
+    </div>
+    <div class="right">
+    <div class="follow">
+    </div>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+{% endblock %}
