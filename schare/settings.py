@@ -159,7 +159,7 @@ DATABASES['default'].update(db_from_env)
 
 
 try:
-    from config.local_settings import *
+    from .local_settings import SECRET_KEY,BASE_DIR,DATABASES,DEBUG,DEFAULT_AUTO_FIELD
 except ImportError:
     pass
 
