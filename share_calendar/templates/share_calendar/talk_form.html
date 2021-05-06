@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <link href="../../../../static/share_calendar/css/style_schedule_form.css/" rel="stylesheet" type="text/css">
+    <link href="../../../../static/share_calendar/css/style_schedule_form.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
@@ -11,7 +11,7 @@
     <div class="content">
         <div class="form">
         <button onclick="location.href='../talk'">back</button>
-        <form method="POST" enctype="multipart/form-data"">
+        <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit">

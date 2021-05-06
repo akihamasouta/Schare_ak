@@ -3,7 +3,7 @@ import calendar
 import datetime, re
 from share_calendar.models import User, Schedule, Today, Talk, TalkContents, Member, Friend, Profile, Favorite, Today_Image, Comment, Balloon
 from share_calendar.forms import Schedule_Form, Today_Form, Member_Form, Talk_Form, Goot_Form, Comment_Form
-from share_calendar.forms import Talk_Content_Form, Today_Image_Form, Year_Month_Form, Profile_Form
+from share_calendar.forms import Talk_Content_Form, Today_Image_Form, Year_Month_Form, Profile_Form, User_Form
 from share_calendar.forms import Formset
 from django import forms
 from functools import reduce
@@ -11,6 +11,7 @@ from django.core.validators import ValidationError
 from datetime import timedelta
 import itertools
 from django.db.models import Q
+from django.contrib.auth.models import User
 # Create your views here.
 
 def daterange(value, arg):
@@ -112,6 +113,7 @@ def share_calendar(request, year=0  , month=0):
         ballooned = Balloon.objects.filter(join_user=request.user)
         today_new = today.strftime("%Y-%m-%d")
         num = year
+        day_of_the_week = ["(日)","(月)","(火)","(水)","(木)","(金)","(土)"]
         params = {
             "data":month_dates,
             "share_sch":display_sch,
@@ -123,11 +125,12 @@ def share_calendar(request, year=0  , month=0):
             "ori_today":today,
             "balloon": bal_list,
             "ballooned": ballooned,
+            "week":day_of_the_week,
             }
         
     return render(request, "share_calendar/index.html", params)
 
-def memory(request):
+def memory(request,year=0,month=0):
     today = datetime.date.today()
         
     display_sch = get_schedule_list(request)
@@ -166,6 +169,9 @@ def memory(request):
     
     data_nest = make_nest(data, 4)
     today_new = today.strftime("%Y/%m/%d")
+    
+   
+        
                 
     params = {
             "login_user":request.user,
@@ -173,6 +179,7 @@ def memory(request):
             "display_sch": display_sch,
             "display_today": display_today,
             "today":today_new,
+            
             }
     return render(request, 'share_calendar/index_memory.html', params)
 
@@ -182,7 +189,9 @@ def memory_pic(request, num):
     pictures_objcts = main_pic.today_image_set.all()
     pictures = [ picture_obj for picture_obj in pictures_objcts]
     pictures_nest = make_nest(pictures, 4)
+    
     params = {
+            "request":request,
             "schedule":schedule,
             "pictures":pictures_nest,
             "main_pic": main_pic,
@@ -323,9 +332,10 @@ def sch_detail(request, num4):
             else:
                 form.save()
                 favorite = True
+            return redirect(to='../../sch_detail/'+str(num4))
         if 'comment_button' in request.POST and comment_form.is_valid():
             comment_form.save()
-            return redirect(to='../sch_detail/'+str(num4))
+            return redirect(to='../../sch_detail/'+str(num4))
             
     try:
         member = data.member_sch
@@ -365,6 +375,8 @@ def balloon(request):
                 elif 'ok'+str(pk) in request.POST:
                     join_user = Balloon.objects.get(pk=pk).join_user
                     schedule = Balloon.objects.get(pk=pk).schedule
+                    balloon = Balloon.objects.get(pk=pk)
+
                     if Member.objects.filter(schedule=schedule):
                         member_obj = Member.objects.get(schedule=schedule)
                         member_obj.member.add(join_user)
@@ -389,7 +401,7 @@ def today_form(request):
     today = datetime.date.today()
     user1 = User.objects.get(username=request.user) 
     today_form = Today_Form(request.POST or None, request.FILES or None, instance=obj)
-    can_select = user1.author.filter(selected_date__lte=today).filter(end_day__gte=today)
+    can_select = user1.author
     today_form.fields['sc_title'].queryset = can_select
     
     params = {
@@ -421,11 +433,20 @@ def today_image_form(request, num):
     if request.method == "POST":
         images = request.FILES.getlist('image', False)
         today = int(request.POST['today'])
-        if form.is_valid():
-            for image in images:
-                images_instance = Today_Image(image=image, today=Today.objects.get(pk=today))
-                images_instance.save()
+        if len(images) <= 100:
+            if form.is_valid():
+                for image in images:
+                    images_instance = Today_Image(image=image, today=Today.objects.get(pk=today))
+                    images_instance.save()
             return redirect(to="share_calendar:memory")
+        else:
+            params = {
+                "form": form,
+                "error":"写真枚数が100枚を超えています"
+                    }
+            return redirect(to=request.build_absolute_uri())
+                
+            
     return render(request, 'share_calendar/today_image_form.html', params)
 
 def today_post(request,num):
@@ -494,14 +515,14 @@ def account(request, pk=0, num=0):
         if not request.user.my_account.filter(friend=visit_user):
             can_follow = True
         if num == 0:
-            schedule = visit_user.author.all().order_by('date')
+            schedule = visit_user.author.all().order_by('selected_date').reverse()
             display_list = []
             for item in schedule:
                 if Today.objects.filter(sc_title=item):
                     display_list.append(Today.objects.get(sc_title=item))
             data = make_nest(display_list, 4)
         elif num == 1:
-            data = Schedule.objects.filter(author=visit_user).order_by('selected_date')
+            data = Schedule.objects.filter(author=visit_user).order_by('selected_date').reverse()
             for item in data:
                 if item.end_day and item.selected_date!=item.end_day:
                     for time in daterange(item.selected_date, item.end_day):
@@ -525,14 +546,14 @@ def account(request, pk=0, num=0):
         follow = visit_user.my_account.all()
         follower = visit_user.for_friend.all()
         if num == 0:
-            schedule = visit_user.author.all().order_by('date').reverse()
+            schedule = visit_user.author.all().order_by('selected_date').reverse()
             display_list = []
             for item in schedule:
                 if Today.objects.filter(sc_title=item):
                     display_list.append(Today.objects.get(sc_title=item))
             data =make_nest(display_list, 4)
         elif num == 1:
-            data = Schedule.objects.filter(author=visit_user).order_by('selected_date').reverse()
+            data = Schedule.objects.filter(author=visit_user).order_by('selected_date')
             for item in data:
                 if item.end_day and item.selected_date!=item.end_day:
                     for time in daterange(item.selected_date, item.end_day):
@@ -552,6 +573,8 @@ def account(request, pk=0, num=0):
             new_datetime_list = sorted(list(set(datetime_list)), reverse=True)
             
     ballooned = Balloon.objects.filter(join_user=request.user)
+    day_of_the_week = ["(日)","(月)","(火)","(水)","(木)","(金)","(土)"]
+
     
     if request.method == "POST":
         if 'follow' in request.POST:
@@ -587,13 +610,19 @@ def account(request, pk=0, num=0):
             "share_sch":get_schedule_list(request),
             "login_user":request.user,
             "ballooned": ballooned,
+            "week":day_of_the_week,
             }
     return render(request, "share_calendar/account.html", params)
 
 def profile_edit(request,prof_pk):
-    obj = Profile.objects.get(pk=prof_pk)
-    form = Profile_Form(request.POST or None,request.FILES or None, initial={'user':request.user}, instance=obj)  
-    
+    if prof_pk == 0:
+        obj = Profile()
+        form = Profile_Form(request.POST or None, request.FILES or None,initial={'user':request.user},instance=obj)
+    else:
+            
+        obj = Profile.objects.get(pk=prof_pk)
+        form = Profile_Form(request.POST or None,request.FILES or None, initial={'user':request.user}, instance=obj)  
+        
     if request.method == "POST" and form.is_valid():
         form.save()
         return redirect(to="../../account/0/0/")
@@ -613,12 +642,28 @@ def follow(request, pk):
             }
     return render(request, 'share_calendar/follow.html', params)
 
+def add_user(request):
+    obj = User()
+    form = User_Form(request.POST or None,instance=obj)
+    if request.method == "POST" and form.is_valid():
+        user = form.save(commit=False)
+        password = form.cleaned_data['password']
+    
+        #  Use set_password here
+        user.set_password(password)
+        user.save()
+        return redirect(to="share_calendar:login")
+    
+    params = {
+            "form":form,
+            }
+        
+    return render(request, 'share_calendar/add_user.html', params)
+
 def follower(request, pk):
     visit_user = User.objects.get(pk=pk)
     follower = visit_user.for_friend.all()
     
-    if request.method == "POST":
-        a = request.POST["b"]
         
         
     params = {
@@ -627,19 +672,35 @@ def follower(request, pk):
             "visit_user": visit_user,
             "request_user": request.user,
             }
-    return render(request, 'share_calendar/follower.html')
+    return render(request, 'share_calendar/follower.html',params)
 
-def add_user(request):
-
-        
-        
-    return render(request, 'share_calendar/add_user.html', params)
+from django.shortcuts import resolve_url
 
 def a(request):
-
+    top_page = resolve_url('share_calendar:calendar')
+    referer = request.environ.get('HTTP_REFERER')  #前ページのURL
+    host_url =  "{0}://{1}".format(request.scheme, request.get_host())
+    now_page_url = request.build_absolute_uri()
+    
+    
+    memory_pic_url = resolve_url('share_calendar:memory_pic'+'/'+'0')
+    num_list = re.findall(r'\d+', now_page_url)
+    memory_pic_num = str(num_list[-1])
+    memory_pic_url = "{0}://{1}/{2}/{3}/".format(request.scheme, request.get_host(),'share_calendar/memory_pic',memory_pic_num)
+    
+    num2_list = re.findall(r'\d+', str(referer)) 
+    look_pic_url = False
+    if len(num2_list) >=3:
+        look_pic_num1 = str(num2_list[-1])
+        look_pic_num2 = str(num2_list[-2])
+        look_pic_num3 = str(num2_list[-3])
+        look_pic_url = "{0}://{1}/{2}/{3}/{4}/{5}/".format(request.scheme, request.get_host(),'share_calendar/memory_pic',look_pic_num1,look_pic_num2,look_pic_num3)
     
     params = {
             "request":request,
+            "a":str(referer),
+            "b":referer,
+            "c":str(now_page_url),
+            "d":str(look_pic_url),
             }
-    aaa
     return render(request, "share_calendar/a.html", params)

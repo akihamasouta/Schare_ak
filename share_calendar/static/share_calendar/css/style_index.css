@@ -67,9 +67,14 @@
     margin-left: 5px;
     box-sizing:border-box;
     }
+    
+
 .day_name {
     display: flex;
-    width: 50px;
+    width: 60px;
+    font: 16px 'arial',sans-serif;
+    color: #222222;
+    align-items:center;
     }
 .day_name p{
     width: 50px;
@@ -163,7 +168,7 @@
 
 .day_obj {
     display: flex;
-    width: 840px;
+    width: 830px;
     height: 28px;
     max-height: 28px;
     }
@@ -209,7 +214,7 @@
     white-space:nowrap;
     display: flex;
     align-items:center;
-    width: 235px;
+    width: 225px;
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;    /* IE, Edge 対応 */

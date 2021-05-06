@@ -68,8 +68,9 @@ a:visited {
 #delete {
     color:red;}
 .schedule {
-    width:250px;
+    width:200px;
     align-self: center;
+    padding-left: 20px;
     }
 
 .post_form {
@@ -78,6 +79,11 @@ a:visited {
     }
     
 .join_user {
-    width:250px;
+    width:280px;
+    height: 20px;
     align-self: center;
+    }
+.join_user span{
+    position:relative;
+    bottom:7px;
     }

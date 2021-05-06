@@ -32,11 +32,13 @@ a:visited {
     }
 
 .memory_pic_header {
+
     width: 900px;
     height: 30px;
     font: 16px 'arial' ,sans-serif;
     color: #444444;
     }
+
 
 .main_pic {
     width: 900px;
@@ -73,6 +75,26 @@ a:visited {
     box-shadow:0 6px 6px rgba(0,0,0,.2);
     }
 
+#picture_box {
+    display:flex;
+    }
+
+#picture {
+    }
+
+#picture img {
+    position:absolute;
+    left: 1135px;
+    width: 25px;
+    height: 25px;
+    top:63px;
+    }
+    
+#plus {
+    position:absolute;
+    left: 1160px;
+    top:60px;
+    }
 
 #schedule_date {
     margin-right: 10px;}

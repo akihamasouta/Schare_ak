@@ -105,7 +105,7 @@ class Favorite(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     icon = models.ImageField(upload_to='icon')
-    prof = models.TextField(max_length=100, null=True, blank=True)
+    prof = models.TextField(max_length=200, null=True, blank=True)
 
 
 class Comment(models.Model):
@@ -118,6 +118,11 @@ class Comment(models.Model):
 class Balloon(models.Model):
     join_user = models.ForeignKey(User, on_delete=models.CASCADE)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+
+class Visibillity(models.Model):
+    groupe_name = models.CharField(max_length=20)
+    author = models.ForeignKey(User,related_name="visibillity_author",on_delete=models.CASCADE)
+    visible_user = models.ManyToManyField(User, related_name="visibillity_user")
     
     
 

@@ -12,9 +12,12 @@
             <div class="loginform_container">
                 <form method="post">
                 {% csrf_token %}
+                {% csrf_token %}
                 <p><span class="username">USERNAME:</span><span>{{form.username}}</span></p>
                 <p><span class="pass">PASSWORD:</span><span>{{form.password}}</span></p>
-                <div><button type="submit">ログイン</button><a href="../add_user">new user>></a></div>
+                {% csrf_token %}
+                <div class="submit"><button type="submit">ログイン</button></div><a class="new_user" href="../add_user">new user>></a>
+                {% csrf_token %}
                 <div class="error_mes">
                 {% if form.errors %}
                     <p>{{form.errors}}</p>

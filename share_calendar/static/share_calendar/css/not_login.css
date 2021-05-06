@@ -9,10 +9,10 @@
 
 .logoffmessage_container { 
     display: flex;
-    width: 1000px;
+    width: 700px;
     height: 170px;
     align-self: center;
-    margin: 100px;
+    margin: 65px;
     border: solid 2px #ddd;
     border-radius: 10px;
     background-color: white;

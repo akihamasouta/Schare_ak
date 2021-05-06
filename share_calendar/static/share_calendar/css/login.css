@@ -65,6 +65,11 @@ form {
     font: 14px 'arial', sans-serif;
     }
 
+.submit {
+    display: flex;
+    justify-content: center;
+    }
+
 button {
     width: 100px;
     border-radius: 5px;
@@ -74,4 +79,12 @@ button {
     align-self: center;
     font: 14px 'arial', sans-serif;
     color: #444;
+    align-self: center;
     }
+
+.new_user {
+    color: #444;
+    }
+
+a {
+    width: 90px;}

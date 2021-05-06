@@ -20,16 +20,31 @@
             <ul>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}">logout</a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="../../media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="../../media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
+                
             </ul>
 {% endblock %}
 {% block content %}
     <div class="memory_pic_container">
         <div class="memory_pic_content">
             <div class="memory_pic_header">
+                
                 <button><a href="{% get_return_link request %}">back</a></button>
+                
+                
                 <span id="schedule_date">{{schedule.date|date:"Y-n-d"}}</span><span>{{schedule}}</span>
+                {% if schedule.author == request.user %}
+                <a href="{% url 'share_calendar:today_image_form' num %}"><span id="plus">+</span><span id="picture"><img src="../../media/button/images.PNG"></span></a>
+                {% endif %}
+                {% if request.user in schedule.member_sch.member.all %}
+                <a href="{% url 'share_calendar:today_image_form' num %}"><span id="plus">+</span><span id="picture"><img src="../../media/button/images.PNG"></span></a>
+                {% endif %}
             </div>
             <div class="main_pic">
                 <img src="../../media/{{main_pic.main_pic}}/">

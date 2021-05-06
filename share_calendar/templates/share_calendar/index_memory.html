@@ -20,35 +20,21 @@
             <ul>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../media/button/sch.PNG"></a></li>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../media/button/memory.PNG"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../media/button/smile.PNG"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}">logout</a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="../media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="../media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
+
             </ul>
 {% endblock %}
 {% block content %}
+
     <div class="memory_container">
         <div class="memory_content">
-                <div class="today_container">
-                    <div class="today_head">
-                        <p class="today_day"><span>{{today}}</span></p>
-                        <p class="plus"><a href="{% url 'share_calendar:today_form' %}">+</a></p>
-                    </div>
-                    <div class="today">
-                        <div class="today_content">
-                            {% for item in display_today %}
-                            {% if item %}
-                            <div class="one_content">
-                                <div class="gradation">
-                                </div>
-                                <a href="{% url 'share_calendar:memory_pic' item.pk %}">
-                                <img src="../media/{{item.main_pic}}"> <!--nazekono.src.deyomikomerukawakannnai-->
-                                </a>
-                                <p class="sc_title"><a href="{% url 'share_calendar:sch_detail' item.sc_title.pk %}">{{item.sc_title}}</a></p>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+         
         {% for data_list in data_nest %}
             <div class="today_memory_content">
             {% for item in data_list %}
@@ -67,7 +53,11 @@
                             <div class="footer">
                                 <a href="{% url 'share_calendar:account' item.sc_title.author.pk 0 %}">
                                 <span id="author">
+                                {% if item.sc_title.author.profile.icon %}
                                 <img src="../media/{{item.sc_title.author.profile.icon}}">
+                                {% else %}
+                                <img class="icon_pic" src="../media/button/no_icon.PNG">
+                                {% endif %}
                                 @{{item.sc_title.author}}
                                 </span>
                                 </a>
@@ -82,6 +72,11 @@
             </div>
         {% endfor %}
         </div>
+        </div>
+        <div class="image_add">
+        <a href="{% url 'share_calendar:today_form' %}">
+        <img src="../media/button/add_image.PNG" class="add_pic_img">
+        </a>
         </div>
     </div>
 {% endblock %}

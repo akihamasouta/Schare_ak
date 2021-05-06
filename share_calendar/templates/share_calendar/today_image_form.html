@@ -3,31 +3,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <link href="../../../../../static/share_calendar/css/form.css/" type="text/css" rel="stylesheet">
-    <link href="../../../../../static/share_calendar/css/style_today_form.css/" type="text/css" rel="stylesheet">
-    <link href="../../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/form.css" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/style_today_form.css" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
 </head>
 {% endblock %}
 {% block icon %}
-    <div class="icon"><img id="icon_img" src="../../../media/button/logo.png/"></div>
+    <div class="icon"><img id="icon_img" src="../../../media/button/logo.png"></div>
 {% endblock %}
 {% block pagenation %}
 <div class="control"></div>
 {% endblock %}
 {% block menu %}
             <ul>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../../media/button/sch.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../../media/button/memory.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../../media/button/smile.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}">logout</a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../../media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="../../../media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="../../../media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
             </ul>
 {% endblock %}
 {% block content %}
     <div class="content_container">
         <div class="content">
-            <div class="redirect">
-                <a href="../../memory/"><button>back</button></a>
-            </div>
             <form method="POST" enctype="multipart/form-data">
                 <div class="form">
                     {% csrf_token %}

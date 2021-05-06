@@ -16,7 +16,12 @@
                     <div class="footer">
                         <a href="{% url 'share_calendar:account' item.sc_title.author.pk 0 %}">
                         <span id="author">
-                        <img src="../../../media/{{item.sc_title.author.profile.icon}}">
+                        {% if item.sc_title.author.profile.icon %}
+                        
+                            <img src="../../../media/{{item.sc_title.author.profile.icon}}">
+                        {% else %}
+                            <img src="../../../media/button/no_icon.PNG">
+                        {% endif %}
                         @{{item.sc_title.author}}
                         </span>
                         </a>

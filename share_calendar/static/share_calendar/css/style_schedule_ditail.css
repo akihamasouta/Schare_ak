@@ -57,11 +57,15 @@ a:visited{
     }
 
 .comment_block {
-    width: 900px;
+    max-width: 900px;
     min-height: 80px;
     height: auto;
     display: flex;
     border-bottom: 1px solid #dddddd;
+    }
+
+.author_date {
+    margin-top: 15px;
     }
 
 .comment_block img {
@@ -80,14 +84,17 @@ a:visited{
     }
 
 .right {
-    width:840px;
-    height:80px;
+    max-width:840px;
+    min-height:80px;
     font: 1em 'arial', sans-serif;
     }
 
 .comment_content_content {
     margin-top: 10px;
     margin-left: 15px;
+    margin-right:15px;
+    margin-bottom:10px;
+    word-break: break-all;
     }
 #id_content {
     width: 330px;

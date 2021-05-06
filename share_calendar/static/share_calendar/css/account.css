@@ -294,10 +294,18 @@
     left:6px;
     }
 
+.sch_title_1::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
 .sch_title_1 {
+    white-space:nowrap;
+    font: 14px 'arial', sans-serif;
     width: 350px;
     margin-right: 10px;
     line-height: 28px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     }
 
 .day_obj_member_1 {

@@ -34,7 +34,13 @@
             <ul>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="media/button/sch.PNG"></a></li>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="media/button/memory.PNG"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="media/button/smile.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
                 {% if balloon %}
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:balloon' %}"><div class="animation_container2"><img class="animation_img2" src="media/button/animation_balloon2.JPG"></div></a></li>
                 {% endif %}
@@ -43,7 +49,13 @@
             <ul>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="../../media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="../../media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
                 {% if balloon %}
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:balloon' %}"><div class="animation_container2"><img class="animation_img2" src="../../media/button/animation_balloon2.JPG"></div></a></li>
                 {% endif %}
@@ -89,16 +101,39 @@
                                 <div class="day_name" onclick="location.href='../../../share_calendar/schedule_form/{{item|date:'Y/m/d'}}'">
                             {% endif %}
                                     <p>{{item|date:"n/j"}}</p>
+                                    {% if item.weekday == 0 %}
+                                        {{week.1}}
+                                    {% elif item.weekday == 1 %}
+                                        {{week.2}}
+                                    {% elif item.weekday == 2 %}
+                                        {{week.3}}
+                                    {% elif item.weekday == 3 %}
+                                        {{week.4}}
+                                    {% elif item.weekday == 4 %}
+                                        {{week.5}}
+                                    {% elif item.weekday == 5 %}
+                                        {{week.6}}
+                                    {% else %}
+                                        {{week.0}}
+                                    {% endif %}
                                 </div>
                                 <div class="day_content">
                                     {% for sch in share_sch %}     
                                          {% if item == sch.selected_date and sch.selected_date == sch.end_day %}
                                             <div class="day_obj" >
+                                            {% if sch.author.profile.icon %}
                                                 {% if num == 0 %}
                                                     <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
                                                 {% else %}
                                                     <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
                                                 {% endif %}
+                                            {% else %}
+                                                {% if num == 0 %}
+                                                    <span class="sch_author_icon"><img src="media/button/no_icon.PNG"></span>
+                                                {% else %}
+                                                    <span class="sch_author_icon"><img src="../../media/button/no_icon.PNG"></span>
+                                                {% endif %}
+                                            {% endif %}
                                                     <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
                                                     <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
                                                 {% if sch.start_time and sch.end_time %}
@@ -160,10 +195,18 @@
                                                 {% for item2 in sch.selected_date|daterange:sch.end_day %}
                                                     {% if item == item2 %}
                                                         <div class="day_obj" >
-                                                        {% if num == 0 %}
-                                                            <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
+                                                        {% if sch.author.profile.icon %}
+                                                            {% if num == 0 %}
+                                                                <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
+                                                            {% else %}
+                                                                <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
+                                                            {% endif %}
                                                         {% else %}
-                                                            <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
+                                                            {% if num == 0 %}
+                                                                <span class="sch_author_icon"><img src="media/button/no_icon.PNG"></span>
+                                                            {% else %}
+                                                                <span class="sch_author_icon"><img src="../../media/button/no_icon.PNG"></span>
+                                                            {% endif %}
                                                         {% endif %}
                                                                 <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
                                                                 <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
@@ -195,10 +238,18 @@
                                                                 {% for members in sch.member_sch.member.all %}
                                                                 <span class="member_name">
                                                                     <a href="{% url 'share_calendar:account' members.pk 0 %}">
+                                                                    {% if members.profile.icon %}
                                                                     {% if num == 0 %}
-                                                                    <img src="media/{{members.profile.icon}}">
+                                                                        <img src="media/{{members.profile.icon}}">
+                                                                        {% else %}
+                                                                        <img src="../../media/{{members.profile.icon}}">
+                                                                        {% endif %}
                                                                     {% else %}
-                                                                    <img src="../../media/{{members.profile.icon}}">
+                                                                        {% if num == 0 %}
+                                                                        <img src="media/button/no_icon.PNG">
+                                                                        {% else %}
+                                                                        <img src="../../media/button/no_icon.PNG">
+                                                                        {% endif %}
                                                                     {% endif %}
                                                                     </a>
                                                                 </span> 
@@ -210,10 +261,18 @@
                                             {% endif %}
                                             {% if item == sch.selected_date %}
                                                 <div class="day_obj" >
-                                                {% if num == 0 %}
-                                                    <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
+                                                {% if sch.author.profile.icon %}
+                                                    {% if num == 0 %}
+                                                        <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
+                                                    {% else %}
+                                                        <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
+                                                    {% endif %}
                                                 {% else %}
-                                                    <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
+                                                    {% if num == 0 %}
+                                                        <span class="sch_author_icon"><img src="media/button/no_icon.PNG"></span>
+                                                    {% else %}
+                                                        <span class="sch_author_icon"><img src="../../media/button/no_icon.PNG"></span>
+                                                    {% endif %}
                                                 {% endif %}
                                                     <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
                                                     <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>            
@@ -270,11 +329,19 @@
                                             {% endif %}
                                             {% if item == sch.end_day %}
                                                 <div class="day_obj" >
+                                                {% if sch.author.profile.icon %}
                                                     {% if num == 0 %}
                                                         <span class="sch_author_icon"><img src="media/{{sch.author.profile.icon}}"></span>
                                                     {% else %}
                                                         <span class="sch_author_icon"><img src="../../media/{{sch.author.profile.icon}}"></span>
                                                     {% endif %}
+                                                {% else %}
+                                                    {% if num == 0 %}
+                                                        <span class="sch_author_icon"><img src="media/button/no_icon.PNG"></span>
+                                                    {% else %}
+                                                        <span class="sch_author_icon"><img src="../../media/button/no_icon.PNG"></span>
+                                                    {% endif %}
+                                                {% endif %}
                                                         <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
                                                     <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>            
                                                     {% if sch.end_time %}

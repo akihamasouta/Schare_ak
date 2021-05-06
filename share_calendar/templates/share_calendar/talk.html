@@ -4,21 +4,21 @@
 <html lang="ja">
 <head>
     <meta chareset="UTF-8">
-    <link href="../../../../static/share_calendar/css/sidebar.css/" type="text/css" rel="stylesheet">
-    <link href= "../../../../static/share_calendar/css/talk.css/" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+    <link href= "../../../../static/share_calendar/css/talk.css" type="text/css" rel="stylesheet">
 </head>
 {% endblock %}
 {% block icon %}
-            <div class="icon"><img id="icon_img" src="../media/button/logo.png/"></div>
+            <div class="icon"><img id="icon_img" src="../media/button/logo.png"></div>
 {% endblock %}
 {% block pagenation %}
 <div class="control"></div>
 {% endblock %}
 {% block menu %}
             <ul>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../media/button/sch.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../media/button/memory.PNG/"></a></li>
-                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../media/button/smile.PNG/"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../media/button/smile.PNG"></a></li>
                 <li class="menu"><a class="menu_a" href="{% url 'share_calendar:logout' %}"></a></li>
             </ul>
 {% endblock %}
@@ -32,9 +32,9 @@
         {% for item in talk_title %}
         <div class="talk_block">
             <div class="talk_message_left">
-            <img src="../media/{{item.pic}}/">
+            <img src="../media/{{item.pic}}">
             </div>
-            <a href="../talk_content/{{item.id}}/">
+            <a href="../talk_content/{{item.id}}">
             <div class="talk_message_right">
             <p class="talk_message_title">{{item.schedule}}</p>
             {% if item.talkcontents_set.last %}
