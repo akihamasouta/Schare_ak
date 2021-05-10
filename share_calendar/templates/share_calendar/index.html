@@ -16,6 +16,7 @@
 </head>
 {% endblock %}
 {% if request.user.is_authenticated %}
+{% if not user.is_anonymous %}
 <body id="body">
     <div class="container">
         <div class="mobile_header">
@@ -443,6 +444,7 @@
     
     {% endblock %}
     </div>
+    {% endif %}
     {% endif %} 
     {% if not request.user.is_authenticated %}
     <div class="container">
