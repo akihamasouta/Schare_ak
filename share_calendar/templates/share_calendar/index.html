@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="UTF-8">
     <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
     <link href="../../../../static/share_calendar/css/style_index.css" type="text/css" rel="stylesheet">
@@ -17,6 +18,16 @@
 {% if request.user.is_authenticated %}
 <body id="body">
     <div class="container">
+        <div class="mobile_header">
+{% block mobile_icon %}
+            {% if num == 0 %}
+            <div class="mobile_icon"><img id="icon_img" src="media/button/logo.png"></div>
+            {% else %}
+            <div class="mobile_icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+            {% endif %}
+{% endblock %}
+        
+        </div>
         <header>
         <div class="header_cont">
 {% block icon %}
@@ -116,6 +127,29 @@
                                     {% else %}
                                         {{week.0}}
                                     {% endif %}
+                                </div>
+                            {% if num == 0 %}
+                                <div class="mobile_day_name" onclick="location.href='../share_calendar/schedule_form/{{item|date:'Y/m/d'}}'">
+                            {% else %}
+                                <div class="mobile_day_name" onclick="location.href='../../../share_calendar/schedule_form/{{item|date:'Y/m/d'}}'">
+                            {% endif %}
+                                    <p class="mobile_day_name_p">{{item|date:"j"}}
+                                    {% if item.weekday == 0 %}
+                                        {{week.1}}
+                                    {% elif item.weekday == 1 %}
+                                        {{week.2}}
+                                    {% elif item.weekday == 2 %}
+                                        {{week.3}}
+                                    {% elif item.weekday == 3 %}
+                                        {{week.4}}
+                                    {% elif item.weekday == 4 %}
+                                        {{week.5}}
+                                    {% elif item.weekday == 5 %}
+                                        {{week.6}}
+                                    {% else %}
+                                        {{week.0}}
+                                    {% endif %}
+                                    </p>
                                 </div>
                                 <div class="day_content">
                                     {% for sch in share_sch %}     

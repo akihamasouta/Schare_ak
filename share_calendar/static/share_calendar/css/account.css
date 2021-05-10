@@ -7,6 +7,7 @@
     justify-content: center;
     background-color: #f9f9f9;
     }
+}
 
 .profile {
     width: 900px;
@@ -332,3 +333,58 @@ a:visited {
     text-decoration: none;
     color: black;
     }
+
+
+@media screen and (max-width: 559px) {
+    
+.profile_container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    background-color: #f9f9f9;
+    }
+
+
+.profile {
+    width: 80%;
+    height:100%;
+    background-color:white;
+    overflow:scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+    
+.profile::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+
+    
+.profile_cont {
+    display: flex;
+    width: 100%;
+    height:30%;
+    box-sizing: border-box;
+    background-color: white;
+    }
+
+
+.left {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    align-items:center;
+    }
+    
+.right {
+    width: 350px;
+    }
+    
+    
+    
+    
+    
+    
+    
+}

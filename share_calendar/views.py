@@ -168,6 +168,7 @@ def memory(request,year=0,month=0):
             display_today.append(Today.objects.get(sc_title=item.sc_title))
     
     data_nest = make_nest(data, 4)
+    mobile_data_nest = make_nest(data,3)
     today_new = today.strftime("%Y/%m/%d")
     
    
@@ -179,7 +180,7 @@ def memory(request,year=0,month=0):
             "display_sch": display_sch,
             "display_today": display_today,
             "today":today_new,
-            
+            "mobile_data_nest":mobile_data_nest,
             }
     return render(request, 'share_calendar/index_memory.html', params)
 

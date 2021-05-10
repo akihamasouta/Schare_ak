@@ -13,6 +13,10 @@
 {% block icon %}
             <div class="icon"><img id="icon_img" src="../media/button/logo.png"></div>
 {% endblock %}
+{% block mobile_icon %}
+            <div class="mobile_icon"><img id="icon_img" src="../media/button/logo.png"></div>
+
+{% endblock %}
 {% block pagenation %}
 <div class="control"></div>
 {% endblock %}
@@ -68,15 +72,47 @@
                                 </a>
                             </div>   
                         </div>
+                        
+            {% endfor %}
+            </div>
+        {% endfor %}
+        {% for data_list in mobile_data_nest %}
+            <div id="mobile_today_memory_content" class="mobile_today_memory_content">
+            {% for item in data_list %}
+                        <div id="mobile_today_container" class="{% cycle 'mobile_today_container_1' 'mobile_today_container_2' 'mobile_today_container_3' %}">
+                        <a href="{% url 'share_calendar:memory_pic' item.pk %}">
+                            <div class="mobile_main_pic">
+                            <img src="../media/{{item.main_pic}}">
+                            <div class="mobile_today_title">
+                            {{item}}
+                            </div>
+                            <div id="mobile_date">
+                                {{item.sc_title.selected_date|date:"Y-m-d"}}
+                            </div>
+                            <div id="author">
+                            {% if item.sc_title.author.profile.icon %}
+                            <img src="../media/{{item.sc_title.author.profile.icon}}">
+                            {% else %}
+                            <img class="icon_pic" src="../media/button/no_icon.PNG">
+                            {% endif %}
+                            @{{item.sc_title.author}}
+                            </div>
+                            </div>
+                            
+                        </a>  
+                            
+                        </div>
+                        
             {% endfor %}
             </div>
         {% endfor %}
         </div>
         </div>
-        <div class="image_add">
+        <div id="image_add" class="image_add">
         <a href="{% url 'share_calendar:today_form' %}">
-        <img src="../media/button/add_image.PNG" class="add_pic_img">
+        <img src="../media/button/add_image.PNG" id="add_pic_img" class="add_pic_img">
         </a>
         </div>
     </div>
+    <script type="text/javascript" src="../../../../static/share_calendar/js/memory.js"></script>
 {% endblock %}
