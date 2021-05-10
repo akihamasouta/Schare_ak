@@ -520,8 +520,8 @@ a:visited {
     overflow:scroll;
     -ms-overflow-style: none;    /* IE, Edge 対応 */
     scrollbar-width: none;
-    padding-top:40px;
-    padding-bottom:90px;
+    padding-top:70px;
+    padding-bottom:70px;
     box-sizing:border-box;
     }
 .future_content_container::-webkit-scrollbar {  /* Chrome, Safari 対応 */
