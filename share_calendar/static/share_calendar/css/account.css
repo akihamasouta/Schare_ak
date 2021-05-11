@@ -334,25 +334,42 @@ a:visited {
     color: black;
     }
 
+.mobile_today_memory_content {
+    display: flex;
+    width: 100%;
+    }
+.mobile_today_container_1, .mobile_today_container_2, .mobile_today_container_3{
+    display: none;
+    }
+    
+.mobile_top {
+    display:none;
+    }
+
+.mobile_end {
+    display:none;
+    }
 
 @media screen and (max-width: 559px) {
     
+
+
 .profile_container {
-    display: flex;
     width: 100%;
-    height: 100%;
-    justify-content: center;
+    height:100%;
     background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
     }
 
-
 .profile {
-    width: 80%;
-    height:100%;
-    background-color:white;
-    overflow:scroll;
-    -ms-overflow-style: none;    /* IE, Edge 対応 */
-    scrollbar-width: none;
+    width: 100%;
+    height: 100%;
+    flex:1;
+    overflow:auto;
+    padding-top:50px;
+    padding-bottom:50px;
+    box-sizing:border-box;
     }
     
 .profile::-webkit-scrollbar {  /* Chrome, Safari 対応 */
@@ -363,27 +380,421 @@ a:visited {
     
 .profile_cont {
     display: flex;
+    flex-direction:column;
     width: 100%;
-    height:30%;
+    height: 40%;
     box-sizing: border-box;
     background-color: white;
     }
 
 
 .left {
-    display: flex;
-    flex-direction: column;
-    width: 150px;
-    align-items:center;
+    display: none;
     }
     
 .right {
-    width: 350px;
+    display: none;
+    }
+
+.mobile_top {
+    width:100%;
+    height:50%;
+    display:flex;
+    }
+
+.mobile_end {
+    width:100%;
+    height:50%;
+    display:flex;
+    }
+
+.mobile_user_icon_wrap {
+    width: 30%;
+    }
+
+
+.mobile_user_info {
+    width: 70%;
+    }
+
+
+#username {
+    display: inline-block;
+    font: 22px 'arial', sans-serif;
+    width: 100%;
+    margin-right:10px;
+    color: #222;
+    margin-top: 25px;
+    overflow-x:scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
     }
     
+#username::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+    
+
+#follow_form {
+    display: inline-block;
+    }
+
+#follow_button {
+    border: none;
+    background: none;
+    color: blue;
+    font: 12px 'arial', sans-serif;
+    }
+    
+#follower_button {
+    border: none;
+    background: none;
+    color: red;
+    font: 12px 'arial', sans-serif;
+    opacity: 0.8;
+    }
+
+
+#prof {
+    width: 100%;
+    height:100%;
+    font: 12px 'arial', sans-serif;
+    color: #333;
+    padding: 20px;
+    padding-bottom:10px;
+    margin:0;
+    box-sizing:border-box;
+    }
+    
+.mobile_post_wrap {
+    text-align:right;
+    padding-right: 10px;
+    }
+
+.follow {
+    display: inline-block;
+    margin-right: 30px;
+    margin-top: 10px;
+    font: 14px 'arial', sans-serif;
+    }
+
+.icon_pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: solid 1px #b5b5b5;
+    margin: 20px;
+    }
+
+
+@media screen and (max-width: 400px) {
+.mobile_top {
+    width:100%;
+    height:50%;
+    display:flex;
+    }
+
+.mobile_end {
+    width:100%;
+    height:50%;
+    display:flex;
+    }
+
+
+#username {
+    display: inline-block;
+    font: 18px 'arial', sans-serif;
+    margin-right:10px;
+    color: #222;
+    margin-top: 15px;
+    overflow-x:scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+    
+#username::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+    
+
+#follow_form {
+    display: inline-block;
+    }
+
+#follow_button {
+    border: none;
+    background: none;
+    color: blue;
+    font: 12px 'arial', sans-serif;
+    }
+    
+#follower_button {
+    border: none;
+    background: none;
+    color: red;
+    font: 12px 'arial', sans-serif;
+    opacity: 0.8;
+    }
+
+#prof {
+    width: 100%;
+    height:100%;
+    font: 10px 'arial', sans-serif;
+    color: #333;
+    padding: 20px;
+    padding-left: 10px;
+    padding-bottom:10px;
+    margin:0;
+    box-sizing:border-box;
+    }
+
+.follow {
+    display: inline-block;
+    margin-right: 30px;
+    margin-top: 10px;
+    font: 14px 'arial', sans-serif;
+    }
+
+.icon_pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: solid 1px #b5b5b5;
+    margin: 10px;
+    }
+
+}
+
+.your_memory {
+    width:100%;
+    height:60%;
+    }
+.head {
+    display: flex;
+    height:34px;
+    justify-content: center;
+    }
+.your_memory_bar {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    }
+
+.bar_img {
+    width: 20px;
+    height:20px;
+    }
+
+.bar_img_heart {
+    width: 30px;
+    height:30px;
+    }
+#bar_left {
+    width: 33%;
+    height: 30px;
+    background-color: white;
+    font-size: 1.2em;
+    text-align: center;
+    box-shadow: 0 2px 2px rgba(0, 0,0, .2);
+    margin-right: 2px;
+    }
+
+#bar_center {
+    width: 33%;
+    height: 30px;
+    background-color: white;
+    font-size: 1.2em;
+    text-align: center;
+    margin-right: 2px;
+    box-shadow: 0 2px 2px rgba(0, 0,0, .2)
+    }
+
+#bar_right {
+    width: 33%;
+    height: 30px;
+    background-color: white;
+    font-size: 1.2em;
+    text-align: center;
+    box-shadow: 0 2px 2px rgba(0, 0,0, .2)
+    }
+    
+.bar {
+    text-decoration: none;
+    }
+.bar:visited {
+    text-decoration:none;
+    color: white;
+    }
+
+/* memory */
+.your_memory_content {
+    width: 100%;
+    height:100%;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    }
+
+.memory_content {
+    width: 100%;
+    height: 100%;
+    flex:1;
+    overflow:auto;
+    box-sizing:border-box;
+    padding-bottom:50px;
+    }
+
+.your_memory_content::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+    
+.mobile_today_memory_content {
+    display: flex;
+    width: 100%;
+    margin-top: 8px;
+    }
+
+.today_memory_content {
+    display: none;
+    }
+
+.today_container_1, .today_container_2, .today_container_3, .today_container_4 {
+    display: none;
+
+    }
+
+.mobile_today_container_1, .mobile_today_container_2, .mobile_today_container_3{
+    display: flex;
+    flex-direction: column;
+    width: 32%;
+    height: 100%;
+    margin-right: 4px;
+    margin-left:4px;
+    box-shadow:0 4px 4px rgba(0,0,0,.4);
+    border-radius: 4px;
+    background-color: white;
+    }
+
+.today_title {
+    display: block;
+    height:17px;
+    font: 12px 'arial', sans-serif;
+    color: #444444;
+    text-align: center;
+    }
+
+#mobile_today_container a{
+    width: 100%;
+    height: 100%;
+    }
+
+
+.main_pic {
+    display:none;
+    }
+
+.mobile_main_pic {
+    position:relative;
+    width: 100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    }
+
+.mobile_main_pic img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+    
+    }
+
+.footer {
+    display: flex;
+    align-items:center;
+    height: 30px;
+    }
+
     
     
+#mobile_date {
+    position:absolute;
+    font: 14px 'arial', sans-serif;
+    color: white;
+    }
+
+
+.mobile_today_title {
+    position:absolute;
+    top: calc(50% - 8px); 
+    font: 16px 'arial', sans-serif;
+    color: white;
+    text-align: center;
+    overflow-x: scroll;
+    white-space: nowrap;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    width:100%;
+    }
+.mobile_today_title::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+
+
+
+/*memory_end*/
+
+/*sch*/
+
     
+.day_obj_image_1 {
+    width: 30px;
+    margin-right: 18px;
+    }
+
+.day_obj_image_1 img{
+    width: 20px;
+    height: 20px;
+    object-fit:cover;
+    position: relative;
+    top: 6px;
+    left:6px;
+    }
+
+.sch_title_1::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+.sch_title_1 {
+    white-space:nowrap;
+    font: 14px 'arial', sans-serif;
+    width: 350px;
+    margin-right: 10px;
+    line-height: 28px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    }
+
+.day_obj_member_1 {
+    white-space:nowrap;
+    display: flex;
+    align-items:center;
+    width: 302px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+.day_obj_member_1::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    }
+
+
+  
     
     
     

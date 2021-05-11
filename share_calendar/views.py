@@ -522,6 +522,7 @@ def account(request, pk=0, num=0):
                 if Today.objects.filter(sc_title=item):
                     display_list.append(Today.objects.get(sc_title=item))
             data = make_nest(display_list, 4)
+            mobile_data = make_nest(display_list,3)
         elif num == 1:
             data = Schedule.objects.filter(author=visit_user).order_by('selected_date').reverse()
             for item in data:
@@ -553,6 +554,7 @@ def account(request, pk=0, num=0):
                 if Today.objects.filter(sc_title=item):
                     display_list.append(Today.objects.get(sc_title=item))
             data =make_nest(display_list, 4)
+            mobile_data = make_nest(display_list,3)
         elif num == 1:
             data = Schedule.objects.filter(author=visit_user).order_by('selected_date')
             for item in data:
@@ -612,6 +614,7 @@ def account(request, pk=0, num=0):
             "login_user":request.user,
             "ballooned": ballooned,
             "week":day_of_the_week,
+            "mobile_data":mobile_data,
             }
     return render(request, "share_calendar/account.html", params)
 

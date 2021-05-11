@@ -350,7 +350,7 @@ a:visited {
 
 #author {
     position:absolute;
-    display:flex;
+    display:none;
     align-items:center;
     top: calc(100% - 20px); 
     padding-right:2px;

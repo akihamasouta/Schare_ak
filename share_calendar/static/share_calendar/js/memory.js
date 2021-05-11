@@ -1,5 +1,4 @@
 let mobile_today_memory_content_id = document.getElementById('mobile_today_memory_content'); 
-   
 let mobile_today_container = document.getElementById('mobile_today_container');
 
 console.log('ok');

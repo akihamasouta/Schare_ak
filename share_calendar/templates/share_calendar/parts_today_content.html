@@ -1,3 +1,4 @@
+<div class="memory_content">
 {% for data_list in data %}
     <div class="today_memory_content">
     {% for item in data_list %}
@@ -35,3 +36,27 @@
     {% endfor %}
     </div>
 {% endfor %}
+{% for data_list in mobile_data %}
+    <div id="mobile_today_memory_content" class="mobile_today_memory_content">
+    {% for item in data_list %}
+                        <div id="mobile_today_container" class="{% cycle 'mobile_today_container_1' 'mobile_today_container_2' 'mobile_today_container_3' %}">
+                            <a href="{% url 'share_calendar:memory_pic' item.pk %}">
+                                <div class="mobile_main_pic">
+                                    <img src="../../../media/{{item.main_pic}}">
+                                    <div class="mobile_today_title">
+                                    {{item}}
+                                    </div>
+                                    <div id="mobile_date">
+                                        {{item.sc_title.selected_date|date:"Y-m-d"}}
+                                        </div>
+                                </div>
+                                
+                            </a>  
+                            
+                        </div>
+    {% endfor %}
+    </div>
+{% endfor %}
+</div>
+<script type="text/javascript" src="../../../../static/share_calendar/js/memory.js"></script>
+

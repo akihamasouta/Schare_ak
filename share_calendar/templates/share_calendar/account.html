@@ -7,12 +7,17 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta chareset="UTF-8">
     <link href="../../../../static/share_calendar/css/style_index.css" type="text/css" rel="stylesheet">
     <link href="../../../../static/share_calendar/css/account.css" type="text/css" rel="stylesheet">
     <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
+{% endblock %}
+{% block mobile_icon %}
+            <div class="mobile_icon"><img id="icon_img" src="../../../media/button/logo.png"></div>
 {% endblock %}
 {% block icon %}
             <div class="icon"><img id="icon_img" src="../../../media/button/logo.png"></div>
@@ -38,8 +43,6 @@
             <div class="profile">
                 <div class="profile_cont">
                 {% if visit_user.profile and visit_user.profile.icon %}
-                
-        
                     {% for item in visit_user_profile %}
                         <div class="left">
                             <img class="icon_pic" src="../../../media/{{item.icon}}">
@@ -64,9 +67,39 @@
                             </div>
                             <div id="prof">{{item.prof}}</div>
                         </div>
+                        <!--mobile-->
+                        <div class="mobile_top">
+                            <div class="mobile_user_icon_wrap">
+                                <img class="icon_pic" src="../../../media/{{item.icon}}">
+                            </div>
+                            <div class="mobile_user_info">
+                                <div>
+                                    <span id="username">{{visit_user}}</span>
+                                </div>
+                                <div class="mobile_post_wrap">
+                                    {% if not request.user == visit_user %}
+                                    {% if can_follow %}
+                                    <span id="follow_span"><form method="POST" id="follow_form">{% csrf_token %}<button type="submit" name="follow" id="follow_button">フォロー</button></form></span>
+                                    {% else %}
+                                    <span id="follow_span"><form method="POST" id="follow_form">{% csrf_token %}<button type="submit" name="follow" id="follower_button">フォローをはずす</button></form></span>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% if request.user == visit_user %}
+                                    <span class="prof_edit"><a href="{% url 'share_calendar:profile_edit' item.pk %}"><button>プロフィールを編集</button></a></span>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                <p class="follow"><a href="{% url 'share_calendar:follow' visit_user.pk %}">follow:{{follow.count}}</a></p>
+                                <p class="follow"><a href="{% url 'share_calendar:follower' visit_user.pk %}">follower:{{follower.count}}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile_end">
+                            <div id="prof">{{item.prof}}</div>
+                        </div>
                     {% endfor %}
                 {% else %}
-                    <div class="left">
+                        <div class="left">
                             <img class="icon_pic" src="../../../media/button/no_icon.PNG">
                         </div>
                         <div class="right">
@@ -87,6 +120,35 @@
                                 <p class="follow"><a href="{% url 'share_calendar:follow' visit_user.pk %}">follow:{{follow.count}}</a></p>
                                 <p class="follow"><a href="{% url 'share_calendar:follower' visit_user.pk %}">follower:{{follower.count}}</a></p>
                             </div>
+                            <div id="prof"></div>
+                        </div>
+                         <div class="mobile_top">
+                            <div class="mobile_user_icon_wrap">
+                                <img class="icon_pic" src="../../../media/button/no_icon.PNG">
+                            </div>
+                            <div class="mobile_user_info">
+                                <div>
+                                    <span id="username">{{visit_user}}</span>
+                                </div>
+                                <div class="mobile_post_wrap">
+                                    {% if not request.user == visit_user %}
+                                    {% if can_follow %}
+                                    <span id="follow_span"><form method="POST" id="follow_form">{% csrf_token %}<button type="submit" name="follow" id="follow_button">フォロー</button></form></span>
+                                    {% else %}
+                                    <span id="follow_span"><form method="POST" id="follow_form">{% csrf_token %}<button type="submit" name="follow" id="follower_button">フォローをはずす</button></form></span>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% if request.user == visit_user %}
+                                    <span class="prof_edit"><a href="{% url 'share_calendar:profile_edit' 0 %}"><button>プロフィールを編集</button></a></span>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                <p class="follow"><a href="{% url 'share_calendar:follow' visit_user.pk %}">follow:{{follow.count}}</a></p>
+                                <p class="follow"><a href="{% url 'share_calendar:follower' visit_user.pk %}">follower:{{follower.count}}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile_end">
                             <div id="prof"></div>
                         </div>
                 {% endif %}   
