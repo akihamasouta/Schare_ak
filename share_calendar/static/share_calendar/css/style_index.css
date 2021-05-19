@@ -482,7 +482,8 @@ a:visited {
     border: 1px solid #dddddd;
     border-radius:2px;
     background-color:white;
-    margin-bottom: 5px;
+    margin-top:5px;
+    margin-bottom: 0px;
     align-self:center;
     box-sizing:border-box;
     margin-left:0;
@@ -542,6 +543,8 @@ a:visited {
     justify-content: center;
     align-items: center;
     }
+
+
 .sch_author_icon img {
     width: 15px;
     height:15px;

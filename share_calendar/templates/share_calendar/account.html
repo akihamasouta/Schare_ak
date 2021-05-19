@@ -172,7 +172,6 @@
                             {% else %}
                             <div class="future_day" id="{{item.month}}-{{item.day}}">
                             {% endif %}
-                            <script src="../../../../static/share_calendar/js/scroll_index.js"></script>
                                 <div class="day_name">
                                     <p>{{item|date:"n/j"}}</p>
                                     {% if item.weekday == 0 %}
@@ -191,6 +190,25 @@
                                         {{week.0}}
                                     {% endif %}
                                 </div>
+                                <div class="mobile_day_name">
+                                    <p class="mobile_day_name_p">{{item|date:"n/j"}}
+                                    {% if item.weekday == 0 %}
+                                        {{week.1}}
+                                    {% elif item.weekday == 1 %}
+                                        {{week.2}}
+                                    {% elif item.weekday == 2 %}
+                                        {{week.3}}
+                                    {% elif item.weekday == 3 %}
+                                        {{week.4}}
+                                    {% elif item.weekday == 4 %}
+                                        {{week.5}}
+                                    {% elif item.weekday == 5 %}
+                                        {{week.6}}
+                                    {% else %}
+                                        {{week.0}}
+                                    {% endif %}
+                                    </p>
+                                </div>
                                 <div class="day_content">
                                     {% for sch in share_sch %}
                                     {% if visit_user == sch.author %}
@@ -198,12 +216,14 @@
                                             <div class="day_obj" >
                                                     
                                                     {% if sch.author.profile.icon %}
+                                                        <span class="mobile_sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                         <span class="sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                     {% else %}
+                                                        <span class="mobile_sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                         <span class="sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                     {% endif %}
                                                     <span class="sch_title_1">
-                                                    <a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">@{{sch.title}}</a></span>
+                                                    <a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
                                                 {% if sch.start_time and sch.end_time %}
                                                     <span class="day_obj_date" id="sch_end">{{sch.start_time|date:"G:i"}}~{{sch.end_time|date:"G:i"}}</span>
                                                 {% elif sch.start_time and not sch.end_time %}
@@ -248,9 +268,11 @@
                                                     {% if item == item2 %}
                                                         <div class="day_obj" >
                                                     {% if sch.author.profile.icon %}
+                                                        <span class="mobile_sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                         <span class="sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                     {% else %}
                                                         <span class="sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
+                                                        <span class="mobile_sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                     {% endif %}
                                                                 <span class="sch_title_1"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
                                                                 <span class="day_obj_date" id="sch_end"> ~{{sch.end_day|date:"n/j"}}</span>                                                                                                           
@@ -287,8 +309,10 @@
                                             {% if item == sch.selected_date %}
                                                 <div class="day_obj" >
                                                     {% if sch.author.profile.icon %}
+                                                        <span class="mobile_sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                         <span class="sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                     {% else %}
+                                                        <span class="mobile_sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                         <span class="sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                     {% endif %}
                                                     <span class="sch_title_1">
@@ -333,8 +357,10 @@
                                                 <div class="day_obj">
                                                     {% if sch.author.profile.icon %}
                                                         <span class="sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
+                                                        <span class="mobile_sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                     {% else %}
                                                         <span class="sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
+                                                        <span class="mobile_sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                     {% endif %}
                                                     <span class="sch_title_1">
                                                     <a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>            
@@ -377,8 +403,11 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
+                                
                             </div>
+                            
                         {% endfor %}
+                        <div class="mobile_space"></div>
                 {% elif num == 2 %}
                       {% for item in datetime_list %}
                         {% if item == ori_today %}
@@ -386,20 +415,55 @@
                             {% else %}
                             <div class="future_day" id="{{item.month}}-{{item.day}}">
                             {% endif %}
-                            <script src="../../../../static/share_calendar/js/scroll_index.js"></script>
-                                <div class="day_name" onclick="location.href='../share_calendar/schedule_form/{{item|date:'Y/m/d'}}'">
+                                <div class="day_name">
                                     <p>{{item|date:"n/j"}}</p>
+                                    {% if item.weekday == 0 %}
+                                        {{week.1}}
+                                    {% elif item.weekday == 1 %}
+                                        {{week.2}}
+                                    {% elif item.weekday == 2 %}
+                                        {{week.3}}
+                                    {% elif item.weekday == 3 %}
+                                        {{week.4}}
+                                    {% elif item.weekday == 4 %}
+                                        {{week.5}}
+                                    {% elif item.weekday == 5 %}
+                                        {{week.6}}
+                                    {% else %}
+                                        {{week.0}}
+                                    {% endif %}
+                                </div>
+                                 <div class="mobile_day_name">
+                                    <p class="mobile_day_name_p">{{item|date:"n/j"}}
+                                    {% if item.weekday == 0 %}
+                                        {{week.1}}
+                                    {% elif item.weekday == 1 %}
+                                        {{week.2}}
+                                    {% elif item.weekday == 2 %}
+                                        {{week.3}}
+                                    {% elif item.weekday == 3 %}
+                                        {{week.4}}
+                                    {% elif item.weekday == 4 %}
+                                        {{week.5}}
+                                    {% elif item.weekday == 5 %}
+                                        {{week.6}}
+                                    {% else %}
+                                        {{week.0}}
+                                    {% endif %}
+                                    </p>
                                 </div>
                                 <div class="day_content">
                                     {% for sch in data %}
                                          {% if item == sch.selected_date and sch.selected_date == sch.end_day %}
                                             <div class="day_obj" >
                                                 {% if sch.author.profile.icon %}
+                                                    <span class="mobile_sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                     <span class="sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                 {% else %}
+                                                    <span class="mobile_sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                     <span class="sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                 {% endif %}
-                                                    <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
+                                                    <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">{{sch.author}}</a></span>
                                                     <span class="sch_title"><a class="day_content_a" href="{% url 'share_calendar:sch_detail' sch.id %}">{{sch.title}}</a></span>
                                                 {% if sch.start_time and sch.end_time %}
                                                     <span class="day_obj_date" id="sch_end">{{sch.start_time|date:"G:i"}}~{{sch.end_time|date:"G:i"}}</span>
@@ -445,8 +509,10 @@
                                                     {% if item == item2 %}
                                                         <div class="day_obj" >
                                                             {% if sch.author.profile.icon %}
+                                                                <span class="mobile_sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                                 <span class="sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                             {% else %}
+                                                                <span class="mobile_sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                                 <span class="sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                             {% endif %}
                                                                 <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
@@ -487,8 +553,10 @@
                                             {% if item == sch.selected_date %}
                                                 <div class="day_obj" >
                                                 {% if sch.author.profile.icon %}
+                                                    <span class="mobile_sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                     <span class="sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                 {% else %}
+                                                    <span class="mobile_sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                     <span class="sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                 {% endif %}
                                                     <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
@@ -531,8 +599,10 @@
                                             {% if item == sch.end_day %}
                                                 <div class="day_obj" >
                                                 {% if sch.author.profile.icon %}
+                                                    <span class="mobile_sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                     <span class="sch_author_icon"><img src="../../../media/{{sch.author.profile.icon}}"></span>
                                                 {% else %}
+                                                    <span class="mobile_sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                     <span class="sch_author_icon"><img src="../../../media/button/no_icon.PNG"></span>
                                                 {% endif %}
                                                     <span class="sch_author"><a href="{% url 'share_calendar:account' sch.author.pk 0 %}">@{{sch.author}}</a></span>
@@ -575,8 +645,11 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
+                                
                             </div>
+                            
                         {% endfor %}
+                        <div class="mobile_space"></div>
                 {% endif %}
                 </div>
             </div>

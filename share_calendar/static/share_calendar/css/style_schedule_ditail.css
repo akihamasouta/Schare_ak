@@ -237,3 +237,7 @@ a:visited{
 #id_author {
     display:none;
     }
+
+@media screen and (max-width: 559px) {
+
+}

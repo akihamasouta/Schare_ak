@@ -508,6 +508,7 @@ def account(request, pk=0, num=0):
     datetime_list = []
     new_datetime_list = []
     can_follow = False
+    mobile_data = []
     if pk != 0:
         visit_user = User.objects.get(pk=pk)
         visit_user_profile = Profile.objects.filter(user=visit_user)

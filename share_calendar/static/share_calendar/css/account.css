@@ -350,13 +350,21 @@ a:visited {
     display:none;
     }
 
+.mobile_space {
+    display:none;
+    }
+
+.mobile_sch_author_icon {
+    display:none;
+    }
+
 @media screen and (max-width: 559px) {
     
 
 
 .profile_container {
-    width: 100%;
-    height:100%;
+    width: 100vw;
+    height:100vh;
     background-color: #f9f9f9;
     display: flex;
     justify-content: center;
@@ -365,8 +373,7 @@ a:visited {
 .profile {
     width: 100%;
     height: 100%;
-    flex:1;
-    overflow:auto;
+    overflow-y:scroll;
     padding-top:50px;
     padding-bottom:50px;
     box-sizing:border-box;
@@ -458,8 +465,7 @@ a:visited {
 #prof {
     width: 100%;
     height:100%;
-    font: 12px 'arial', sans-serif;
-    color: #333;
+    font: 14px 'arial', sans-serif;
     padding: 20px;
     padding-bottom:10px;
     margin:0;
@@ -569,11 +575,11 @@ a:visited {
 
 .your_memory {
     width:100%;
-    height:60%;
+
     }
 .head {
     display: flex;
-    height:34px;
+    height:30px;
     justify-content: center;
     }
 .your_memory_bar {
@@ -632,19 +638,20 @@ a:visited {
 /* memory */
 .your_memory_content {
     width: 100%;
-    height:100%;
+    height: auto;
     background-color: #f9f9f9;
     display: flex;
+    flex-direction:column;
     justify-content: center;
     }
 
 .memory_content {
     width: 100%;
-    height: 100%;
     flex:1;
     overflow:auto;
     box-sizing:border-box;
-    padding-bottom:50px;
+    padding-bottom:20px;
+    
     }
 
 .your_memory_content::-webkit-scrollbar {  /* Chrome, Safari 対応 */
@@ -753,16 +760,16 @@ a:visited {
     
 .day_obj_image_1 {
     width: 30px;
-    margin-right: 18px;
+    margin-right: 0px;
     }
 
 .day_obj_image_1 img{
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     object-fit:cover;
     position: relative;
-    top: 6px;
-    left:6px;
+    top: 0px;
+    left:0px;
     }
 
 .sch_title_1::-webkit-scrollbar {  /* Chrome, Safari 対応 */
@@ -770,10 +777,10 @@ a:visited {
     }
 .sch_title_1 {
     white-space:nowrap;
-    font: 14px 'arial', sans-serif;
-    width: 350px;
-    margin-right: 10px;
-    line-height: 28px;
+    font: 12px 'arial', sans-serif;
+    line-height: 16px;
+    width: 40%;
+    margin-right: 8px;
     overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -783,7 +790,7 @@ a:visited {
     white-space:nowrap;
     display: flex;
     align-items:center;
-    width: 302px;
+    width: 40%;
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;    /* IE, Edge 対応 */
@@ -793,8 +800,13 @@ a:visited {
     display:none;
     }
 
+.mobile_space {
+    display:block;
+    height: 20px;
+    }
 
-  
+.sch_author_icon {
+}
     
     
     
