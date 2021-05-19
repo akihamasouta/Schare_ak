@@ -97,15 +97,22 @@ a:visited {
     }
 
 #schedule_date {
-    margin-right: 10px;}
-    
+    margin-right: 10px;
+    }
 
+.mobile_picture_wrap {
+    display:none;
+    }
+
+.mobile_main_pic {
+    display:none;
+    }
 @media screen and (max-width: 559px) {
 
 .mobile_header {
     display: block;
     position:fixed;
-    width:100%;
+    width:100vw;
     height:8%;
     order:2;
     background-color: white;
@@ -114,8 +121,8 @@ a:visited {
     }
 
 .memory_pic_container {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     background-color: #f9f9f9;
@@ -145,17 +152,25 @@ a:visited {
 
 
 .main_pic {
-    width: 100%;
-    min-height: 40%;
+    display:none;
+    }
+
+.mobile_main_pic {
+    width: 100vw;
+    height: 250px;
+
     display: flex;
     justify-content: center;
-    margin-top: 8px;
-    margin-bottom: 4px;
+    padding-top:30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     }
     
-.main_pic img {
+.mobile_main_pic img {
+    height:auto;
     max-width: 100%;
-    height: 40%;
+    max-height: 100%;
+    
     }
     
 .pictures_container {
@@ -164,19 +179,26 @@ a:visited {
     
 .pictures {
     width: 100%;
-    height: 215px;
+    height: auto;
     display: flex;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    }
+    margin-top: 4px;
+    margin-bottom: 4px;
     
+    }
+
+.mobile_picture_wrap {
+    display:flex;
+    width: 24%;
+    height:100%;
+    margin:2px;
+    }
 .pictures img{
-    width: 215px;
-    height: 215px;
+    width: 100%;
+    height:100%;
     object-fit: cover;
     box-sizing: border-box;
-    margin-left: 8px;
-    box-shadow:0 6px 6px rgba(0,0,0,.2);
+    margin-left:0px;
+    box-shadow:0 0px 0px rgba(0,0,0,.2);
     }
 
 #picture_box {
@@ -188,7 +210,7 @@ a:visited {
 
 #picture img {
     position:absolute;
-    left: 1135px;
+    left: 35px;
     width: 25px;
     height: 25px;
     top:63px;
@@ -196,7 +218,7 @@ a:visited {
     
 #plus {
     position:absolute;
-    left: 1160px;
+    left: 60px;
     top:60px;
     }
 
