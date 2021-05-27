@@ -175,6 +175,11 @@ a:visited {
     
 .pictures_container {
     width: 100%;
+    padding-top:250px;
+    box-sizing: border-box;
+    position:relative;
+    top:-250px;
+    
     }
     
 .pictures {

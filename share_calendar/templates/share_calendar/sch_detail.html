@@ -159,7 +159,7 @@
                 </div>
                 {% endfor %}
                 </div>
-                <form method="POST">
+                <form method="POST" class="comment_form">
                 {% csrf_token %}
                 {{comment_form.schedule}}
                 {{comment_form.author}}
