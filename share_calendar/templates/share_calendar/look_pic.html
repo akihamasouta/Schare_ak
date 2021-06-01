@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta charset="utf-8">
     <link href="../../../../../static/share_calendar/css/look_pic.css" type="text/css" rel="stylesheet">
 </head>
@@ -45,7 +47,15 @@
                 </div>
                 {% endif %}
             </div>
+            <div class="mobile_pic_container">
+            {% for mobile_picture in pictures %}
+            <div class="mobile_picture" id="{{ forloop.counter }}">
+            <img src="../../../../media/{{mobile_picture.image}}">
+            </div>
+            {% endfor %}
+            </div>
         </div>
     </div>
+    <script type="text/javascript" src="../../../../../static/share_calendar/js/x_scroll.js"></script>
 </body>
 </html>

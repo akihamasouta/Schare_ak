@@ -214,6 +214,7 @@ def look_pic(request, num, ind1=0, ind2=0):
     
     params = {
             "schedule":schedule,
+            "pictures":pictures,
             "picture":pictures_nest[ind1][ind2],
             "main_pic": main_pic,
             "num":num,
