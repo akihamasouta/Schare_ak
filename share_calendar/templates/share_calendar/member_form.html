@@ -4,10 +4,15 @@
 <!DOCTYPE html>
 <html lant="ja">
 <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="../../../../../static/share_calendar/css/form.css" type="text/css" rel="stylesheet">
     <link href="../../../../../static/share_calendar/css/member_form.css" type="text/css" rel="stylesheet">
     <link href="../../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
 </head>
+{% endblock %}
+{% block mobile_icon %}
+        <div class="mobile_icon"><img id="icon_img" src="../media/button/logo.png"></div>
 {% endblock %}
 {% block icon %}
         <div class="icon"><img id="icon_img" src="../media/button/logo.png"></div>
@@ -30,19 +35,19 @@
 {% endblock %}
 {% block content %}
     <div class="content_container">
-    <div class="content">
-    <button class="button_to_redirect" type="submit" onclick="location.href='../'">back</button>
-    <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="schedule">{{form.schedule}}</div>
-    <div class="friend_icon"><span id="fri_img"><img src="../media/button/member.PNG"></span><span id="fri_mem">member</span></div>
-    <div class="member_box">
-    <div>{{form.member}}</div>
-    </div>
-    <div id="save_container">
-    <input class="save_and_redirect" type="submit" value="save">
-    </div>
-    </form>
-    </div>
+        <div class="content">
+            <button class="button_to_redirect" type="submit" onclick="location.href='../'">back</button>
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="schedule">{{form.schedule}}</div>
+            <div class="friend_icon"><span id="fri_img"><img src="../media/button/member.PNG"></span><span id="fri_mem">member</span></div>
+            <div class="member_box">
+                <div>{{form.member}}</div>
+            </div>
+            <div id="save_container">
+                <input class="save_and_redirect" type="submit" value="save">
+            </div>
+            </form>
+        </div>
     </div>
 {% endblock %} 

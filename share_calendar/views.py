@@ -666,6 +666,9 @@ def add_user(request):
         
     return render(request, 'share_calendar/add_user.html', params)
 
+def setting(request,num):
+    params = {}
+    return render(request, 'share_calendar/setting.html', params)
 def follower(request, pk):
     visit_user = User.objects.get(pk=pk)
     follower = visit_user.for_friend.all()

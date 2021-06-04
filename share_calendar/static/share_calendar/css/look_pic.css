@@ -145,11 +145,18 @@ a:visited{
 
 .mobile_pic_container > div {
     display: flex;
+    align-items:center;
     scroll-snap-align: center;
     height: 100%;
     width: 100%;
     flex: none;
     background-color:black;
+    }
+
+.mobile_picture {
+    display:flex;
+    justify-content:center;
+    align-items:center;
     }
 
 .mobile_picture > img {
@@ -201,6 +208,9 @@ a:visited{
     height: 20px;
     }
 
+button {
+    z-index:1000;
+    }
 
 
 

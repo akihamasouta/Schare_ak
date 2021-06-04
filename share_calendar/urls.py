@@ -28,6 +28,7 @@ urlpatterns =[
         path('follow/<int:pk>/', views.follow, name="follow"),
         path('follower/<int:pk>/', views.follower, name="follower"),
         path('talk_content/<int:num>/', views.talk_content, name="talk_content"),
+        path('setting/<int:num>/', views.setting, name="setting"),
         path('login/', auth_views.LoginView.as_view(template_name='share_calendar/login.html'),\
              name='login'),
         path('logout/', auth_views.LogoutView.as_view(), name='logout'),

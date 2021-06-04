@@ -424,6 +424,10 @@ a:visited {
 .mobile_user_info {
     width: 70%;
     }
+    
+.mobile_user_info_top{
+    display:flex;
+    }
 
 
 #username {
@@ -494,6 +498,15 @@ a:visited {
     margin: 20px;
     }
 
+#set_img {
+    width:20px;
+    height:20px;
+    top:0;
+    left:0;
+    margin-right:10px;
+    margin-top:25px;
+    }
+
 
 @media screen and (max-width: 400px) {
 .mobile_top {
@@ -522,6 +535,13 @@ a:visited {
     
 #username::-webkit-scrollbar {  /* Chrome, Safari 対応 */
     display:none;
+    }
+
+#set_img {
+    width:20px;
+    height:20px;
+    margin-right:10px;
+    margin-top:15px;
     }
     
 

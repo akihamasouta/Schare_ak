@@ -81,7 +81,31 @@
 {% block content %}
         <div class="content_container">
             <div class="content">
+                        <div class="disp-box">
+                        {% if num == 0 %}
+                        <label class="disp-box-label" for="disp-btn"><img src="media/button/search.PNG"></label>
+                        
+                        {% else %}
+                        <label class="disp-box-label" for="disp-btn"><img src="../../media/button/search.PNG"></label>
+                        {% endif %}
+                        <input type="checkbox" id="disp-btn">
+                        <div class="search_box">
+                        <form class="month_form" action="{% url 'share_calendar:calendar' %}" method="POST">
+                        {% csrf_token %}
+                            <span><label class="label_year">{{form.year}}年</label></span>
+                            <span><label class="label_month">{{form.month}}月</label></span>
+                            
+                            <button class="button_shadow" type="submit" name="search">
+                            {% if num == 0 %}
+                            <img src="media/button/search.PNG">
+                            {% else %}
+                            <img src="../../media/button/search.PNG">
+                            {% endif %}
+                            </button>
+                        </form></div>
+                    </div>
                 <div class="future_head">
+
                     <span class="today_date">{{today}}</span>
                     <div class="future_head_form">
                         <form class="month_form" action="{% url 'share_calendar:calendar' %}" method="POST">

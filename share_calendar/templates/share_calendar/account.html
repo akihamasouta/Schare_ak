@@ -11,8 +11,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta chareset="UTF-8">
     <link href="../../../../static/share_calendar/css/style_index.css" type="text/css" rel="stylesheet">
-    <link href="../../../../static/share_calendar/css/account.css" type="text/css" rel="stylesheet">
+    
     <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/account.css" type="text/css" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 {% endblock %}
@@ -73,8 +74,9 @@
                                 <img class="icon_pic" src="../../../media/{{item.icon}}">
                             </div>
                             <div class="mobile_user_info">
-                                <div>
+                                <div class="mobile_user_info_top">
                                     <span id="username">{{visit_user}}</span>
+                                    <span><a id="conf" href="{% url 'share_calendar:setting' visit_user.pk %}"><img id="set_img" src="../../../media/button/setting.png"></a></span>
                                 </div>
                                 <div class="mobile_post_wrap">
                                     {% if not request.user == visit_user %}

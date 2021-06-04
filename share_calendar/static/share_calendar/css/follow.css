@@ -148,14 +148,14 @@ a:visited {
 
 .follow_container {
     width: 100%;
-    height: 70px;
+    height: 50px;
     border-bottom: 1px solid #dddddd;
     display: flex;
     }
 
 .account_icon img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     object-fit:cover;
     border-radius: 50%;
     position:relative;

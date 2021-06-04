@@ -392,7 +392,35 @@ a:visited {
    text-decoration: none;
    }
 
-
+.mobile_add_picture_warp {
+    position:fixed;
+    left:80%;
+    top:80%;
+    display:block;
+    width: 60px;
+    height:60px;
+    background-color:white;
+    box-shadow:0 4px 4px rgba(0,0,0,.4);
+    border-radius:50%;
+    z-index:999;
+    
+    }
+#picture img {
+    position:relative;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    top:15px;
+    }
+    
+#plus {
+    position:relative;
+   
+   
+    font-size:20px;
+    left: 7px;
+    top:-3px;
+    }
 
 }
 

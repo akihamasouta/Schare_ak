@@ -405,7 +405,9 @@ a:visited {
     display:none;
     }
 
-
+.disp-box {
+    display:none;
+    }
 
 @media screen and (max-width: 559px) {
 
@@ -424,9 +426,79 @@ a:visited {
     height: 100%;
     display: flex;
     flex-direction: column;
+    margin-top:0;
     }
 
+/** ボタン **/
+.disp-box {
+    display:block;
+    position:fixed;
+    left:80%;
+    top:80%;
+    display:block;
+    width: 0px;
+    height:0px;
+    background-color:white;
+    box-shadow:0 0px 0px rgba(0,0,0,.4);
+    z-index:999;
+    }
+.disp-box-label {
+    position:relative;
+    padding:0px;
+    margin-right:0;
+    display: inline-block;
+    color: #332c10;                   /* ボタンの文字色 */
+    background-color: white;        /* ボタンの背景色 */
+    font-weight: bold;                /* 文字の太さ */
+    width:50px;
+    height:50px;            /* ボタン内側の余白 */
+    box-shadow:0 4px 4px rgba(0,0,0,.4);
+    border-radius:50%;
+    cursor: pointer;                  /* ボタンにカーソルを合わせた時に指アイコンを表示 */
+}
+.disp-box label:after{
+    display:none;               /* ボタンにカーソルを合わせた時に指アイコンを表示 */
+}
+/** ボタンクリック時のボタンを押し込む動作 **/
+.disp-box label:active {
+    -webkit-transform: translateY(4px); /* Chrome、Safari用 */
+    -moz-transform: translateY(4px);    /* Firefox用 */
+    -ms-transform: translateY(4px);     /* IE用 */
+    transform: translateY(4px);
+    border-bottom: none;
+}
+/** チェックボックス **/
+.disp-box input {
+    display: none; /* 非表示 */
+}
+/** 表示・非表示を切り替えるテキスト（「クリックされました！」の部分） **/
+.disp-box .search_box {
 
+    display: none;        /* 文字を非表示 */
+    transition: 0.2s;  /* 文字が表示・非表示される時のスピード */
+}
+/** チェックボックスにチェックが入った時の、テキストの処理 **/
+.disp-box input:checked ~ .search_box {
+    position:relative;
+    top:-130px;
+    left:-230px;
+    height: auto;
+    display: flex; /* 文字を表示 */
+    width:230px;
+    height:80px;
+    background-color:white;
+    border-radius:10px;
+    border:2px solid #ddd;
+    
+}
+
+.disp-box img {
+    position:relative;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    top:12px;
+    }
 .future_head_mobile {
     display: flex;
     width: 100%;
@@ -466,18 +538,22 @@ a:visited {
 
 
 .future_content {
-    width:100%;
-    height: 100%;
+    width:100vw;
+    height: 100vh;
+    align-items: baseline;
     display: flex;
     flex-direction:column;
+    align-items: baseline;
     align-items:center;
     justify-content: center;
     }
 
 .future_day {
-    display: flex;
-    flex-direction:column;
-    width: 95%;
+    display: block;
+    width: 96%;
+    position:relative;
+    left:2%;
+    height:auto;
     min-height:60px;
     border: 1px solid #dddddd;
     border-radius:2px;
@@ -487,6 +563,7 @@ a:visited {
     align-self:center;
     box-sizing:border-box;
     margin-left:0;
+    overflow:hidden;
     }
     
 
@@ -514,26 +591,26 @@ a:visited {
     }
         
 .future_content_container {
-    display:flex;
-    flex-direction:column;
+    display:block;
+    
     height: 100%;
     width:100%;
     overflow:scroll;
     -ms-overflow-style: none;    /* IE, Edge 対応 */
     scrollbar-width: none;
-    padding-top:70px;
-    padding-bottom:70px;
+    padding-top:15%;
+    padding-bottom:17%;
     box-sizing:border-box;
     }
 .future_content_container::-webkit-scrollbar {  /* Chrome, Safari 対応 */
     display:none;
     }
 .day_content {
-    display: flex;
-    flex-direction: column;
     align-items:start;
     width: 100%;
     min-height: 40px;
+    height:auto;
+    overflow:hidden;
     }
 
 
@@ -610,6 +687,7 @@ a:visited {
     height:16px;
     max-height:16px;
     margin-bottom:3px;
+    min-height:16px;
     
     }
 .day_obj_date {
@@ -647,7 +725,52 @@ a:visited {
     scrollbar-width: none;
     }
 
-    
+.month_form {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:100%;
+    }
+.label_year {
+    display:flex;
+    font: 25px 'arial', sans-serif;
+    color: #444;
+    color:
+    text-align:center;
+    border:none;
+    width:80px;
+    box-shadow:0 0px 0px rgba(0,0,0,.4);
+    }
+#id_year {
+    align-self:center;
+    text-align:center;
+    font-size:25px;
+    width:70px;
+    }
+
+.label_month {
+    display:flex;
+    font: 25px 'arial', sans-serif;
+    color: #444;
+    text-align:center;
+    border:none;
+    width:30px;
+    box-shadow:0 0px 0px rgba(0,0,0,.4);
+    }
+#id_month {
+text-align:center;
+align-self:center;
+    font-size:25px;
+    width:30px;
+    }
+
+.button_shadow img{
+    width:25px;
+    height:25px;
+    top:0;
+    left:30px;
+    } 
 
 
 

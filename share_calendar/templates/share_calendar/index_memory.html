@@ -40,7 +40,9 @@
 
     <div class="memory_container">
         <div class="memory_content">
-         
+                <div class="mobile_add_picture_warp">
+                <a href="{% url 'share_calendar:today_form' %}"><span id="plus">+</span><span id="picture"><img src="../media/button/picture.PNG"></span></a>
+                </div>
         {% for data_list in data_nest %}
             <div class="today_memory_content">
             {% for item in data_list %}
@@ -80,6 +82,7 @@
         {% endfor %}
         {% for data_list in mobile_data_nest %}
             <div id="mobile_today_memory_content" class="mobile_today_memory_content">
+
             {% for item in data_list %}
                         <div id="mobile_today_container" class="{% cycle 'mobile_today_container_1' 'mobile_today_container_2' 'mobile_today_container_3' %}">
                         <a href="{% url 'share_calendar:memory_pic' item.pk %}">

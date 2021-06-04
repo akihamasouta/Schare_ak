@@ -168,4 +168,196 @@
     height: 28px;
     }
 
+@media screen and (max-width: 559px) {
+.content {
+    width: 100%;
+    height: 100%;
+    padding-top:15%;
+    padding-bottom:15%;
+    box-shadow: 0 0px 0px rgb(0 0 0 / 0%);
+    border-radius: 0px;
+    box-sizing:border-box;
+   
+    }
+.content_container {
+    width: 100vw;
+    height:100vh;
+    }
+.form_content {
+    display: flex;
+    flex-direction: column;
+    }
 
+.form_content_line {
+    width: 100%;
+    height: 100%;
+    margin-left: 15%;
+    margin-right: 0;
+    margin-top: 6%;
+    margin-bottom:0;
+    display: flex;
+    }
+
+@media screen and (max-width: 350px) {
+.form_content_line {
+    width: 100%;
+    height: 100%;
+    margin-left: 9%;
+    margin-right: 0;
+    margin-top: 6%;
+    margin-bottom:0;
+    display: flex;
+    }
+
+}
+
+.button_to_member {
+    align-self: center;
+    }
+
+#id_title {
+    position: relative;
+    top: -5px;
+    font: 17px 'arial', sans-serif;
+    }
+
+#id_selected_date_year {
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	position:relative;
+	left: -12px;
+    top: -4px;
+    width: 52px;
+    height: 30px;
+    display: inline-block;
+    font: 17px 'arial', sans-serif;
+	
+    }
+
+#id_selected_date_day {
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	position: relative
+    top: -4px;
+    right: 10px;
+    width: 25px;
+    height: 30px;
+    display: inline-block;
+    font: 17px 'arial', sans-serif;
+    
+    }
+
+#id_selected_date_month {
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	position: relative;
+    top: -4px;
+    width: 25px;
+    height: 30px;
+    display: inline-block;
+    font: 17px 'arial', sans-serif;
+    }
+
+#id_end_day_year {
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	position:relative;
+	left: -13px;
+    top: -4px;
+    width: 52px;
+    height: 30px;
+    display: inline-block;
+    font: 17px 'arial', sans-serif;
+	
+    }
+
+#id_end_day_day {
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	position: relative;
+    top: -4px;
+    right: 10px;
+    width: 25px;
+    height: 30px;
+    display: inline-block;
+    font: 17px 'arial', sans-serif;
+    }
+
+#id_end_day_month {
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	position: relative;
+    top: -4px;
+    width: 25px;
+    height: 30px;
+    display: inline-block;
+    font: 17px 'arial', sans-serif;
+    }
+
+#id_tag {
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+    position: relative;
+    left: 37px;
+    top: -5px;
+    width: 203px;
+    height: 30px;
+    display: inline-block;
+    font: 17px 'arial', sans-serif;
+    }
+
+#year {
+    font: 17px 'arial', sans-serif;
+    position:relative;   
+    }
+    
+#month {
+    font: 17px 'arial', sans-serif;
+    position:relative;
+    left: 45px;
+    }
+#day {
+    font: 17px 'arial', sans-serif;
+    position: relative;
+    left:90px;
+    }
+
+#end_year {
+    font: 17px 'arial', sans-serif;
+    position:relative;
+    left:1px;   
+    }
+    
+#end_month {
+    font: 17px 'arial', sans-serif;
+    position:relative;
+    left: 46px;
+    }
+#end_day {
+    font: 17px 'arial', sans-serif;
+    position: relative;
+    left: 91px;
+    }
+#id_start_time {    
+    position: relative;
+    left: 64px;
+    font: 17px 'arial', sans-serif;
+    }
+#id_end_time {    
+    position: relative;
+    left: 63px;
+    font: 17px 'arial', sans-serif;
+    }
+
+.form_content img {
+    width: 28px;
+    height: 28px;
+    }
+}
