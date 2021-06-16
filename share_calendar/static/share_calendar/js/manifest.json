@@ -7,7 +7,12 @@
             "src": "IMG_0968.png",
             "sizes": "192x192",
             "type": "image/png"
-        }
+        } , 
+         {
+     "src": "IMG_0969.png",
+     "sizes": "512x512",
+     "type": "image/png"
+   }
     ],
     "start_url": "../../../share_calendar/",
     "display": "fullscreen",

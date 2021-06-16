@@ -3,14 +3,14 @@ const CACHE_NAME = `${registration.scope}!${CACHE_VERSION}`;
 
 // キャッシュするファイルをセットする
 const urlsToCache = [
-  'templates/share_calendar/account_memory.html',
-  'templates/share_calendar/account.html',
-  'templates/share_calendar/add_user.html',
-  'templates/share_calendar/balloon.html',
-  'templates/share_calendar/follow.html',
+  '../templates/share_calendar/account_memory.html',
+  '../templates/share_calendar/account.html',
+  '../templates/share_calendar/add_user.html',
+  '../templates/share_calendar/balloon.html',
+  '../templates/share_calendar/follow.html',
   'templates/share_calendar/follower.html',
-  'templates/share_calendar/index_memory.html',
-  'templates/share_calendar/index.html',
+  '../../../templates/share_calendar/index_memory.html',
+  '../../templates/share_calendar/index.html',
   'templates/share_calendar/login.html',
   'templates/share_calendar/look_pic.html',
   'templates/share_calendar/member_form.html',
