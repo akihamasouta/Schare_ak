@@ -6,9 +6,13 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <title>schare</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="apple-touch-icon" href="../../../../media/button/mobile_icon.png" size="180*180">
+    <link rel="manifest" href="../../../../static/share_calendar/js/manifest.json">
     <meta charset="UTF-8">
     <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
     <link href="../../../../static/share_calendar/css/style_index.css" type="text/css" rel="stylesheet">
@@ -498,5 +502,16 @@
     </div>
     {% endif %}
         <!--container-->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').then(function(registration) {
+    // 登録成功
+    console.log('ServiceWorker の登録に成功しました。スコープ: ', registration.scope);
+  }).catch(function(err) {
+    // 登録失敗
+    console.log('ServiceWorker の登録に失敗しました。', err);
+  });
+}
+</script>
 </body>
 </html>

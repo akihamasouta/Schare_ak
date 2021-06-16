@@ -1,0 +1,16 @@
+{
+    "name": "schare",
+    "short_name": "schare",
+    "description": "スケジュールシェアー型SNSアプリ",
+    "icons": [
+        {
+            "src": "IMG_0968.PNG",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "../../../../../templates/share_calendar/index.html",
+    "display": "fullscreen",
+    "theme_color": "#dff0d8",
+    "background_color": "#dff0d8"
+}
