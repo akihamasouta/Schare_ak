@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
     <link href="../../../static/share_calendar/css/index_memory.css" type="text/css" rel="stylesheet">
+    <link href="../../../static/share_calendar/css/style_setting.css" type="text/css" rel="stylesheet">
 </head>
 {% endblock %}
 {% block icon %}
@@ -36,11 +37,24 @@
             </ul>
 {% endblock %}
 {% block content %}
-<div>a</div>
-<div>a</div>
-<div>a</div><div></div>
-<div>a</div>
+<div class="setting_wrap">
 <a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a>
+<form method="POST">
+{% csrf_token %}
+<input type="text" name="user_name">
+<button type="submit">検索</button>
+</form>
+
+{% for user in user_names %}
+<a class="user_name_a"  href="{% url 'share_calendar:account' user.pk 0 %}">
+<div class="user_wrap">
+<div class="user_icon"><img id="user_icon" src="../../media/{{user.profile.icon}}"></div>
+<div class="user_name">{{user}}</div>
+</div>
+</a>
+{% endfor %}
+
+</div>
    
    
 {% endblock %}

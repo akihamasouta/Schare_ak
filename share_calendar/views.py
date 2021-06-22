@@ -667,7 +667,18 @@ def add_user(request):
     return render(request, 'share_calendar/add_user.html', params)
 
 def setting(request,num):
-    params = {}
+    params = {"user_names":"",
+              }
+    if request.method=="POST":
+        user_name = request.POST['user_name']
+        if User.objects.filter(username=user_name):
+            params["user_names"] = User.objects.filter(username=user_name)
+        else:
+            params["user_names"] = None
+                
+                
+        
+    
     return render(request, 'share_calendar/setting.html', params)
 def follower(request, pk):
     visit_user = User.objects.get(pk=pk)

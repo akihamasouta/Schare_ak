@@ -23,6 +23,8 @@
 {% block icon %}
             <div class="icon"><img id="icon_img" src="../../../media/button/logo.png"></div>
 {% endblock %}
+{% if request.user.is_authenticated %}
+{% if not user.is_anonymous %}
 {% block pagenation %}
 <div class="control"></div>
 {% endblock %}
@@ -659,3 +661,5 @@
         </div>
     </div>
     {% endblock %}
+    {% endif %}
+    {% endif %}

@@ -39,7 +39,7 @@
             <div class="ditail">
                 <div id="title">
                     <button><a href="{% get_return_link request %}">back</a></button>
-                    <span>{{data}}</span>
+                    <span id="title_data">{{data}}</span>
                     <span>
                     <form method="POST" id="post_form" name="post_form">
                         {% csrf_token %}
