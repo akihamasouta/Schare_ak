@@ -1,1 +1,0 @@
-web: gunicorn schare.wsgi --log-file -
