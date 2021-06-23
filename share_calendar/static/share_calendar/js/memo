@@ -1,0 +1,532 @@
+let form_good = document.getElementById('form_good');
+let id_good = document.getElementById('id_good');
+let heart = document.getElementById('heart');
+let heart_after = document.getElementById('heart_after');
+let heart_before = document.getElementById('heart_before');
+let good_count = document.getElementById('id_good_count');
+let form = document.getElementById('form');
+var count = 1;
+
+console.log('ok');
+form_good.addEventListener('click', function(e){
+    if (count===1){
+    heart_after.style.background = "#FF0033";
+    heart_before.style.background = "#FF0033";
+    good_count.textContent = String(Number(good_count.textContent) + 1);
+    count = 2;
+    document.post_form.submit();
+    } else if (count===2){
+    heart_after.style.background = "#e0e0e0";
+    heart_before.style.background = "#e0e0e0";
+    good_count.textContent = String(Number(good_count.textContent) - 1);
+    count = 1;
+    }
+    });
+
+    {% for item in hc %}
+    <div class="{% cycle 'one' 'two' 'three' 'four' 'five' %}">
+    {% for day in item %}
+    <span>{{day}}</span>
+    {% endfor %}
+    </div>
+    {% endfor %}
+    hc = calendar.monthcalendar(2019, 1)
+    
+    
+    
+    
+        today = datetime.date.today()
+    year = today.year
+    month = today.month
+    cal = calendar.Calendar()
+    if month == 12:
+        next_month = 1
+        next_year = year + 1
+        data_second_month =cal.itermonthdates(next_year, next_month)
+    else:
+        next_month = month + 1
+    second_month_list = []
+    data_first_month = cal.itermonthdates(year, month)
+    data_second_month =cal.itermonthdates(year, next_month)
+    first_month_list = [item for item in data_first_month]
+    second_month_list = [item for item in data_second_month]
+    double_month_list = first_month_list + second_month_list
+    new_double_month_list = []
+    for x in double_month_list:
+        if x not in new_double_month_list:
+            new_double_month_list.append(x)
+    today_index = new_double_month_list.index(today)
+    data_30days = new_double_month_list[today_index+1:-1]
+    formated_list = []
+    for format_list in data_30days:
+        formated_list.append(format_list.strftime("%Y/%m/%d"))
+    today_new = today.strftime("%Y/%m/%d")
+    
+    params = {
+            "data":formated_list,
+            "today":today_new,
+            "login_user":request.user,
+            }
+            
+        
+        .login_user {
+    color: white;
+    font-size: 120%;
+    }
+
+
+
+    
+.future {
+    width: 83%;
+    height: 50%;
+    overflow-y: scroll;
+    } 
+    
+.future_head p {
+    margin: 0.2%;
+    opacity: 0.3;
+    }
+    
+.future_content {
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+    background-color: #E5E5E5;
+    }
+    
+.future_head {
+    width: 83%;
+    height: 70px;
+    box-sizing: content-box;
+    display: inline-block;
+    float: right;
+    background-color: white;
+    border-top: 5px solid #E5E5E5;
+    }
+
+.future_day {
+    width: 100%;
+    min-height: 140px;
+    background-color: white;
+    position: relative;
+    top: 20px;
+    margin-bottom: 30px;
+    border: 3px solid #000099;
+    display: inline-block;
+    box-sizing: border-box;
+    }
+    
+    
+.day_content {
+    width: 100%;
+    overflow-wrap: break-word;
+    background-color: white;
+    font-size: 3em;
+    position: relative;
+    display:block;
+    box-sizing: content-box;
+    }
+    
+.day_name {
+    width: 100%;
+    display: block;
+    float: bottom;
+    text-align: center;
+    background-color: #000099;
+    color: white;
+    }
+    
+.day_name:hover .future_day {
+    margin: 110px;
+    }
+    
+.day_obj_odd {
+    width: 50%;
+    height: auto;
+    color: black;
+    display: inline-block;
+    position: relative;
+    float: left;
+    z-index: 1;
+    font-size: 0.4em;
+    }
+
+.day_obj_odd a {
+    text-decoration: none;
+    color: black;
+    margin: 0;
+    }
+    
+.day_obj_even {
+    width: 50%;
+    color: black;
+    display: inline-block;
+    position:relative;
+    float: right;
+    z-index: 1;
+    font-size: 0.4em;
+    }
+
+.day_obj_even a {
+    text-decoration: none;
+    color: black;
+    margin: 0;
+    }
+    
+.sch_author {
+    color: #666666;
+    margin-right: 5px;
+    position: relative;
+    z-index:1;
+    }
+    
+#sch_title {
+    margin-left: 20px;
+    z-index:1;
+    }
+
+#sch_starttime {
+    margin-left: 20px;
+    }
+
+
+    
+#ditail {
+    width: 350px;
+    height: 200px;
+    z-index: 999;
+    display: none;
+    position:absolute;
+    top: 350px;
+    left:545px;
+    border: 2px solid #000099;
+    background-color: white;
+    }
+
+.sch_title:hover > .ditail{
+    display: inline-block;
+    }
+
+    
+.today_head p {
+    margin: 0.2%;
+    opacity: 0.3;
+    }
+    
+
+
+.today_head {
+    width: 83%;
+    height: 70px;
+    box-sizing: border-box;
+    display: inline-block;
+    float: right;
+    margin-bottom: 0;
+    background-color: white;
+    overflow: hidden;
+    }
+
+  
+.today_day {
+    display: inline-block;
+    text-align: left;
+    float: left;
+    }
+
+
+.plus {
+    display: inline-block;
+    text-align: right;
+    float:right;
+    }
+
+
+.plus a {
+    text-decoration: none;
+    color: black;
+    }
+
+
+.today {
+    width: 83%;
+    height: 30%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: inline-block;
+    }
+
+  
+.today_content {
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+    float: right;
+    background-color: #E5E5E5;
+    }
+    
+.one_content {
+    max-width:210px;
+    max-height: 275px;
+    position: relative;
+    margin:20px;
+    }
+.gradation {
+    width: 204px;
+    height:204px;
+    z-index:0;
+    position:relative;
+    top:23px;
+    left:-2px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    display: inline-block;
+    background-color: red;
+    animation-name:gradation;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    
+    }
+
+.today_content img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit:cover;
+    background-color: white;
+    position:relative;
+    top:-186px;
+    z-index:1;
+    }
+
+#sc_title {
+    position: relative;
+    top:-200px;
+    text-align:center;
+    font: 1.2em 'impact', sans-serif;
+    color:#606060;
+    }
+
+@keyframes gradation {
+    8%{background-color: #red;}
+    15%{background-color: #ff8000;}
+    22%{background-color: #ffff00;}
+    30%{background-color: #80ff00;}
+    38%{background-color: #00ff00;}
+    46%{background-color: #00ff80;}
+    53%{background-color: #00ffff;}
+    60%{background-color: #0080ff;}
+    67%{background-color: #0000ff;}
+    75%{background-color: #8000ff;}
+    83%{background-color: #ff00ff;}
+    91%{background-color: #ff0080;}
+    100%{background-color: #red;}
+}
+
+
+
+
+
+    if month == 12:
+        next_month = 1
+        next_year = year + 1
+        data_second_month =cal.itermonthdates(next_year, next_month)
+    else:
+        next_month = month + 1
+    
+        second_month_list = []
+        data_first_month = cal.itermonthdates(year, month)
+        data_second_month =cal.itermonthdates(year, next_month)
+        first_month_list = [item for item in data_first_month]
+        second_month_list = [item for item in data_second_month]
+        double_month_list = first_month_list + second_month_list
+        new_double_month_list = []
+        for x in double_month_list:
+            if x not in new_double_month_list:
+                new_double_month_list.append(x)
+        today_index = new_double_month_list.index(today)
+        data_30days = new_double_month_list[today_index:-1]
+        
+        
+        
+        
+
+                  <div class="future_day">
+                                <div class="day_name" onclick="location.href='../share_calendar/schedule_form/{{item|date:'Y/m/d'}}'">
+                                    <p>{{item|date:"n/j"}}</p>
+                                </div>
+                                <div class="day_content">
+                                    {% for sch in data %}     
+                                                       
+                                        {% if sch.end_day %}
+                                            {% if sch.selected_date|daterange:sch.end_day %}
+                                                {% for item2 in sch.selected_date|daterange:sch.end_day %}
+                                                    {% if item == item2 %}
+                                                        <div class="day_obj" >
+                                                            <span>
+                                                            <a class="day_content_a" href="../share_calendar/sch_detail/{{sch.id}}">
+                                                                <span class="sch_author">@{{sch.author}}</span><span class="sch_title">{{sch.title}}</span>
+                                                                <span class="day_obj_date" id="sch_end"> ~{{sch.end_day|date:"n/j"}}</span>                                                                                                           
+                                                            </a>     
+                                                            </span>
+                                                            <span class="day_obj_join">
+                                                            {% if login_user != sch.author %}
+                                                            in
+                                                            {% endif %}
+                                                            </span>
+                                                            <span class="day_obj_coment">
+                                                            {% if num == 0 %}
+                                                            <img src="media/button/comment.png/" class="comment_png">
+                                                            {% else %}
+                                                            <img src="../../media/button/comment.png/" class="comment_png">
+                                                            {% endif %}
+                                                            </span>
+                                                            <span class="day_obj_member">
+                                                                {% for members in sch.member_set.get.member.all %}
+                                                                <span class="member_name">
+                                                                    {{members}}
+                                                                </span> 
+                                                                {% endfor %}
+                                                            </span>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                        {% if item == sch.selected_date %}
+                                                <div class="day_obj" >
+                                                    <a class="day_content_a" href="../share_calendar/sch_detail/{{sch.id}}">
+                                                    <span class="sch_author">@{{sch.author}}</span><span class="sch_title">{{sch.title}}</span>            
+                                                    {% if sch.start_time and sch.end_time %}
+                                                        {% if sch.selected_date == sch.end_day %}
+                                                        <span class="day_obj_date" id="sch_starttime">{{sch.start_time|date:"G:i"}}~{{sch.end_time|date:"G:i"}}</span>
+                                                        {% else %}
+                                                        <span class="day_obj_date" id="sch_starttime">{{sch.start_time|date:"G:i"}}~</span>
+                                                        {% endif %}                                                                                                             
+                                                    {% elif sch.start_time %}
+                                                        <span class="day_obj_date" id="sch_starttime">{{sch.start_time|date:"G:i"}}~</span>  
+                                                    {% elif sch.endtime %}
+                                                        <span class="day_obj_date" id="sch_starttime">~{{sch.end_time|date:"G:i"}}</span>
+                                                    {% else %}
+                                                        <span class="day_obj_date" id="sch_starttime"></span>                 
+                                                    {% endif %}
+                                                    </a>       
+                                                    <span class="day_obj_join">
+                                                    {% if login_user != sch.author %}
+                                                    in
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_coment">
+                                                    {% if num == 0 %}
+                                                        <img src="media/button/comment.png/" class="comment_png">
+                                                    {% else %}
+                                                        <img src="../../media/button/comment.png/" class="comment_png">
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_member">
+                                                    </span>
+                                                        {% for members in sch.member_set.get.member.all %}
+                                                        <span class="member_name">
+                                                            {{members}},
+                                                        </span> 
+                                                        {% endfor %}
+                                                    </span>                                                
+                                                </div>
+                                        {% endif %}
+                                        
+                                        {% if sch.end_day %}
+                                            {% if item == sch.end_day %}
+                                                <div class="day_obj" >
+                                                    <a class="day_content_a" href="../share_calendar/sch_detail/{{sch.id}}">
+                                                    <span class="sch_author">@{{sch.author}}</span><span class="sch_title">{{sch.title}}</span>            
+                                                    {% if sch.end_time %}
+                                                        <span class="day_obj_date" id="sch_starttime">~{{sch.end_time|date:"G:i"}}</span> 
+                                                    {% else %}                    
+                                                        <span class="day_obj_date" id="sch_starttime"></span>
+                                                    {% endif %}
+                                                    </a>
+                                                    <span class="day_obj_join">
+                                                    {% if login_user != sch.author %}
+                                                    in
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_coment">
+                                                    {% if num == 0 %}
+                                                        <img src="media/button/comment.png/" class="comment_png">
+                                                    {% else %}
+                                                        <img src="../../media/button/comment.png/" class="comment_png">
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="day_obj_member">
+                                                        {% for members in sch.member_set.get.member.all %}
+                                                        <span class="member_name">
+                                                            {{members}}
+                                                        </span> 
+                                                        {% endfor %}
+                                                    </span>   
+                                                </div>
+                                            {% endif %}
+                                        
+                                        {% if not sch.end_day %}
+                                        <div class="day_obj" >
+                                            <a class="day_content_a" href="../share_calendar/sch_detail/{{sch.id}}">
+                                            <span class="sch_author">@{{sch.author}}</span><span class="sch_title">{{sch.title}}</span>            
+                                            <span class="day_obj_date"></span>                     
+                                            </a>
+                                            <span class="day_obj_join">
+                                            {% if login_user != sch.author %}
+                                            in
+                                            {% endif %}
+                                            </span>
+                                            <span class="day_obj_coment">
+                                            {% if num == 0 %}
+                                                <img src="media/button/comment.png/" class="comment_png">
+                                            {% else %}
+                                                <img src="../../media/button/comment.png/" class="comment_png">
+                                            {% endif %}
+                                            </span>
+                                            <span class="day_obj_member">
+                                                {% for members in sch.member_set.get.member.all %}
+                                                <span class="member_name">
+                                                    {{members}}
+                                                </span> 
+                                                {% endfor %}
+                                            </span>   
+                                        </div>
+                                        {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        
+                    
+        selected_date = str(request.POST['selected_date_month']) + str(request.POST['selected_date_day'])
+        end_day  = str(request.POST['end_day_month']) + str(request.POST['end_day_day'])
+        start_time = str(request.POST['start_time'])
+        end_time = str(request.POST['end_time'])
+        
+        striped_time = start_time.replace(':', '0')
+        striped_end_time = end_time.replace(':', '0')
+        if  int(selected_date) > int(end_day):
+            params["day_error"] = "正しい日付を入力してください"
+        elif selected_date == end_day:
+            if striped_time and striped_end_time:
+                if int(striped_time) >= int(striped_end_time):
+                    params["time_error"] = "正しい時間を入力してください"
+            elif form.is_valid():
+                schedule = form.save(commit=False)
+                schedule.author = request.user
+                schedule.save()
+                return redirect(to="share_calendar:member_form")
+                
+        elif form.is_valid():
+            schedule = form.save(commit=False)
+            schedule.author = request.user
+            schedule.save()
+            return redirect(to="share_calendar:member_form")
+    return render(request, 'share_calendar/schedule_form.html', params)

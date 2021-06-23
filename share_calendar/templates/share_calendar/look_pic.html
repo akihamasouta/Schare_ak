@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    {% include 'share_calendar/head.html' %}
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <link href="../../../../../static/share_calendar/css/look_pic.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+        <a href="{% url 'share_calendar:memory_pic' schedule.today.pk %}"><button>back</button></a>
+            <div class="pic_container">
+                {% if ind1 == 0 and ind2 == 0 %}
+                <div class="left allow">
+                </div>
+                {% else %}
+                <div class="left allow">
+                    {% if ind2 != 0 %}
+                    <a href="{% url 'share_calendar:look_pic' num ind1 ind2|add:-1 %}">
+                    <img src="../../../../media/button/left.png">
+                    </a>
+                    {% else %}
+                    <a href="{% url 'share_calendar:look_pic' num ind1|add:-1 ind2|add:3 %}">
+                    <img src="../../../../media/button/left.png">
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+                <div class="pic_content">
+                    <img src="../../../../media/{{picture.image}}">
+                </div>
+                {% if end_ind %}
+                <div class="right allow">
+                </div>
+                {% else %}
+                <div class="right allow">
+                    {% if ind2 == 3 %}
+                    <a href="{% url 'share_calendar:look_pic' num ind1|add:1 ind2|add:-3 %}">
+                    <img src="../../../../media/button/right.PNG">
+                    </a>
+                    {% else %}
+                    <a href="{% url 'share_calendar:look_pic' num ind1 ind2|add:1 %}">
+                    <img src="../../../../media/button/right.PNG">
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="mobile_pic_container">
+            {% for mobile_picture in pictures %}
+            <div class="mobile_picture" id="{{ forloop.counter }}">
+            <img src="../../../../media/{{mobile_picture.image}}">
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../../../static/share_calendar/js/x_scroll.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+staticfiles
+local_settings.py
+db.sqlite3
+myspace
+/static
+.DS_Store
+media/.DS_Store
+media/icon/.DS_Store
+media/photos/.DS_Store
+media/talk_icon/
+schare/.DS_Store
+share_calendar/.DS_Store
+share_calendar/static/.DS_Store
+share_calendar/static/share_calendar/.DS_Store

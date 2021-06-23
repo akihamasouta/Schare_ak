@@ -1,0 +1,76 @@
+{% extends 'share_calendar/index.html' %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    {% include 'share_calendar/head.html' %}
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="../../../../../static/share_calendar/css/follow.css" type="text/css" rel="stylesheet">
+    <link href="../../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block mobile_icon %}
+<div class="mobile_icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+{% endblock %}
+{% block icon %}
+    <div class="icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="../../media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="../../media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="content_container">
+    <div class="content">
+    <div class="content_head">
+    <a href="../../account/{{pk}}/0"><button>back</button></a>
+    </div>
+    {% for item in follow %}
+    <div class="follow_container">
+    {{a}}
+    <div class="left">
+    {% if item.friend.profile %}
+    <div class="account_icon"><a href="{% url 'share_calendar:account' item.friend.pk 0 %}"><img src="../../media/{{item.friend.profile.icon}}"></a></div>
+    {% else %}
+    <div class="account_icon"><a href="{% url 'share_calendar:account' item.friend.pk 0 %}"><img src="../../media/button/no_icon.PNG"></a></div>
+    {% endif %}
+    </div>
+    {% if request.user == visit_user %}
+    <div class="center">
+    <div class="name"><a href="{% url 'share_calendar:account' item.friend.pk 0 %}">@{{item.friend}}</a></div>
+    
+    <div class="follow_comment">フォロー中</div>
+    </div>
+    <div class="right">
+    <div class="follow">
+    </div>
+    </div>
+    {% else %}
+    <div class="center">
+    <div class="name"><a href="{% url 'share_calendar:account' item.friend.pk 0 %}">@{{item.friend}}</a></div>
+    
+    <div class="follow_comment">@{{visit_user}}フォロー中</div>
+    </div>
+    <div class="right">
+    <div class="follow">
+    </div>
+    </div>
+    {% endif %}
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+{% endblock %}

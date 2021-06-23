@@ -1,0 +1,15 @@
+    <title>schare</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="manifest" href="https://akschare.herokuapp.com/share_calendar/share_calendar/static/share_calendar/js/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <link rel="apple-touch-icon" href="https://akschare.herokuapp.com/share_calendar/media/button/mobile_icon_180x180.png" size="180x180">
+    <meta charset="UTF-8">
+    <link href="https://akschare.herokuapp.com/share_calendar/share_calendar/static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+    <link href="https://akschare.herokuapp.com/share_calendar/share_calendar/static/share_calendar/css/style_index.css" type="text/css" rel="stylesheet">
+    {% if not request.user.is_authenticated %}
+    <link href="https://akschare.herokuapp.com/share_calendar/share_calendar/static/share_calendar/css/not_login.css" type="text/css" rel="stylesheet">
+    {% endif %}

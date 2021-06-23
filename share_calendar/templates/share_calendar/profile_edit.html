@@ -1,0 +1,58 @@
+{% extends 'share_calendar/index.html' %}
+{% load static %}
+{% load daterange %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>    
+    {% include 'share_calendar/head.html' %}
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta chareset="UTF-8">
+    <link href="../../../../static/share_calendar/css/base_form.css" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/profile_edit.css" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block mobile_icon %}
+            <div class="mobile_icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+{% endblock %}
+{% block icon %}
+            <div class="icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>   
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="../../media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="../../media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
+            </ul>
+{% endblock %}
+{% block content %}
+<div class="form_container">
+    <div class="form">
+        <div class="form_content">
+        <div class="redirect"><a href="../../account/0/0"><button>back</button></a></div>
+        <form class="form_edit_post" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="form_icon_container">アイコン<br>{{form.icon}}</div>
+            <div class="form_user_container">{{form.user}}</div>
+            <div class="form_prof_container">
+                <div class="form_prof_head">自己紹介</div>
+                <div class="form_prof_content">{{form.prof}}</div>
+            </div>
+            <button id="save_button" type="submit">save</button>
+        </form>
+        </div>
+    </div>
+</div>
+<script src="../../../../static/share_calendar/js/a_scroll_none.js"></script>
+{% endblock %}

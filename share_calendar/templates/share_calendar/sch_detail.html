@@ -1,0 +1,173 @@
+{% extends 'share_calendar/index.html' %}
+{% load static %}
+{% block head %}
+{% load pre_back %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+        {% include 'share_calendar/head.html' %}
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link href="../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+        <link href="../../../static/share_calendar/css/style_schedule_ditail.css" type="text/css" rel="stylesheet">
+</head>
+{% endblock %}
+{% block mobile_icon %}
+<div class="mobile_icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+{% endblock %}
+{% block icon %}
+<div class="icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="../../media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="../../media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="ditail_container">
+        <div class="ditail_content">
+            <div class="ditail">
+                <div id="title">
+                    <button><a href="{% get_return_link request %}">back</a></button>
+                    <span id="title_data">{{data}}</span>
+                    <span>
+                    <form method="POST" id="post_form" name="post_form">
+                        {% csrf_token %}
+                        {% if not favorite %}
+                            {{form.user}}
+                            {{form.schedule}}
+                            {{form.good}}
+                            <button id="heart" name="heart_button" type="submit"><img id="black_heart" src="../../media/button/book_m.PNG"></button>
+                        {% else %}
+                            <button id="heart" name="heart_button" type="submit"><img id="black_heart" src="../../media/button/book_m_blue.PNG"></button>
+                        {{form.user}}
+                        {{form.schedule}}
+                        {{form.good}}
+                    {% endif %}
+                    </form>
+                    </span>
+                    
+                </div>
+                <div class="content_container">
+                    <div class="content">
+                        <div class="detail_content">
+                            <img src="../../media/button/time.PNG">
+                            <span id="id_selected_data">{{data.selected_date|date:"n/j"}}</span>
+                            {% if data.start_time %}
+                            <sapn id="id_start_time">{{data.start_time|date:"G:i"}}</span>
+                            {% endif %}
+                            {% if data.selected_date == data.end_day %}
+                                {% if end_time %}
+                                    <span id="id_end_time">{{data.end_time|date:"G:i"}}</span>
+                                {% endif %}
+                            {% else %}
+                                <span id="id_end_day">{{data.end_day|date:"n/j"}}</span>
+                                {% if end_time %}
+                                <span id="id_end_time">{{data.end_time|date:"G:i"}}</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="detail_content">
+                            <img src="../../media/button/author.PNG">
+                            
+                            <span>
+                            <a href="{% url 'share_calendar:account' data.author.pk 0 %}">
+                        {% if data.author.profile.icon %}
+                            <img src="../../media/{{data.author.profile.icon}}">
+                            {% else %}
+                            <img class="icon_pic" src="../../media/button/no_icon.PNG">
+                        {% endif %}
+                            @{{data.author}}
+                            </a>
+                            </span>
+                        </div>
+                        {% if data.tag %}
+                        <div class="detail_content"><img src="../../media/button/tag.PNG"><span id="id_tag">{{data.tag}}</span></div>
+                        {% endif %}
+                        <div class="detail_content" id="id_member">
+                        <div class="detail_content_left">
+                        <img src="../../media/button/member.PNG">
+                        </div>
+                        {% if data.tag %}
+                            <div class="detail_content_right_tag">
+                            {% for item in member %}
+                            <span id="item_member">
+                            <a href="{% url 'share_calendar:account' item.pk 0 %}">
+                            {% if item.profile.icon %}
+                            <img src="../../media/{{item.profile.icon}}">
+                            {% else %}
+                            <img class="icon_pic" src="../../media/button/no_icon.PNG">
+                            {% endif %}
+                            @{{item}}
+                            </a>
+                            </span>
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                        <div class="detail_content_right">
+                        {% for item in member %}
+                            
+                            <span id="item_member">
+                            <a href="{% url 'share_calendar:account' item.pk 0 %}">
+                            {% if item.profile.icon %}
+                            <img src="../../media/{{item.profile.icon}}">
+                            {% else %}
+                            <img class="icon_pic" src="../../media/button/no_icon.PNG">
+                            {% endif %}
+                            @{{item}}
+                            </a>
+                            </span>
+                        {% endfor %}
+                        </div>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+        </div>
+            <div class="comment">
+                <div class="comment_content">
+                {% for item in comment %}
+                <div class="comment_block">
+                    <div class="left">
+                        <a href="{% url 'share_calendar:account' item.author.pk 0 %}">
+                        {% if item.author.profile.icon %}
+                            <img src="../../media/{{item.author.profile.icon}}">
+                            {% else %}
+                            <img class="icon_pic" src="../../media/button/no_icon.PNG">
+                        {% endif %}
+                        </a>
+                    </div>
+                    <div class="right">
+                        <div class="author_date">
+                        <a href="{% url 'share_calendar:account' item.author.pk 0 %}"><span>@{{item.author}}</span></a>
+                        <span>{{item.created_at|date:'n/j'}}</span>
+                        </div>
+                        <div class="comment_content_content">
+                        {{item.content}}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+                <form method="POST" class="comment_form">
+                {% csrf_token %}
+                {{comment_form.schedule}}
+                {{comment_form.author}}
+                {{comment_form.content}}
+                <button class="submit_button" name="comment_button" type="submit">投稿</button>
+                </form>
+            </div>
+    </div>
+<script src="../../../static/share_calendar/js/sch_ditail.js"></script>
+{% endblock %}

@@ -1,0 +1,186 @@
+@charset 'UTF-8';
+
+
+form {
+    height: 550px;
+    }
+
+.member_box {
+    width: 500px;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 5%;
+    margin-left: 50px;
+    overflow: scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    }
+    
+.member_box::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    } 
+    
+#save_container {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    }
+#id_schedule {
+    display: none;
+    }
+
+#id_member {
+    list-style: none;
+    margin-left: 0px;
+    }
+    
+#id_member input[type="checkbox"]{
+    width: 16px;
+    height: 16px;
+    margin-right: 20px;
+    }
+
+#id_member label {
+    font: 18px 'arial', sans-serif;
+    margin-left: 20px;
+    position:relative;
+    top: 10px;
+    }
+
+#id_member li {
+    display: inline-block;
+    width: 500px;
+    height: 40px;
+    border-bottom: 1px solid #ddd;
+    }
+
+.friend_icon img {
+    width: 25px;
+    height: 25px;
+    
+    }
+
+.friend_icon  {
+    font: 20px 'arial', sans-serif;
+    height: 40px;
+    margin-top: 30px;
+    }
+
+#fri_mem {
+    position: relative;
+    top: -5px;
+    margin-left: 20px;
+    }
+
+#fri_img {
+    margin-left: 68px;
+    }
+
+.save_and_redirect {
+    }
+@media screen and (max-width: 559px) {
+.content {
+    width: 100%;
+    height: 100%;
+    padding-top:15%;
+    padding-bottom:15%;
+    box-shadow: 0 0px 0px rgb(0 0 0 / 0%);
+    border-radius: 0px;
+    box-sizing:border-box;
+   
+    }
+.content_container {
+    width: 100vw;
+    height:100vh;
+    }
+
+form {
+    height: 100%;
+    
+    }
+
+.member_box {
+    width: 100%;
+    height: 74%;
+    border: 0px solid white;
+    border-radius: 0;
+    margin-left: 0px;
+    overflow: scroll;
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;
+    display:flex;
+    flex-direction:column;
+    border-bottom:1px solid #ddd;
+    }
+    
+.member_box::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+    } 
+    
+#save_container {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    }
+#id_schedule {
+    display: none;
+    }
+
+#id_member {
+    list-style: none;
+    margin-left: 0px;    
+    display: flex;
+    flex-direction:column;
+    border-top: 1px solid #ddd;
+    }
+    
+#id_member input[type="checkbox"]{
+    width: 16px;
+    height: 16px;
+    margin-right: 20px;
+    }
+
+#id_member label {
+    font: 18px 'arial', sans-serif;
+    
+
+    position:relative;
+    top: 10px;
+    }
+
+#id_member li {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    
+    }
+
+.friend_icon img {
+    width: 25px;
+    height: 25px;
+    
+    }
+
+.friend_icon  {
+    font: 20px 'arial', sans-serif;
+    height: 40px;
+    margin-top: 20px;
+    }
+
+#fri_mem {
+    position: relative;
+    top: -5px;
+    margin-left: 20px;
+    }
+
+#fri_img {
+    margin-left: 20px;
+    }
+
+.save_and_redirect {
+    }
+
+
+}

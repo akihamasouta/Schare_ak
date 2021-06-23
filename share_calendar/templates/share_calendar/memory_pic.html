@@ -1,0 +1,85 @@
+{% extends 'share_calendar/index.html' %}
+{% load static %}
+{% load pre_back %}
+{% block head %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    {% include 'share_calendar/head.html' %}
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
+    <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/sidebar.css" type="text/css" rel="stylesheet">
+    <link href="../../../../static/share_calendar/css/memory_pic.css" type="text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+{% endblock %}
+{% block mobile_icon %}
+            <div class="mobile_icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+{% endblock %}
+{% block icon %}
+            <div class="icon"><img id="icon_img" src="../../media/button/logo.png"></div>
+{% endblock %}
+{% block pagenation %}
+<div class="control"></div>
+{% endblock %}
+{% block menu %}
+            <ul>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:calendar' %}"><img id="icon_sch" src="../../media/button/sch.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:memory' %}"><img id="icon_memory" src="../../media/button/memory.PNG"></a></li>
+                <li class="menu"><a class="menu_a" href="{% url 'share_calendar:account' 0 0 %}"><img id="icon_smile" src="../../media/button/smile.PNG"></a>
+                <ul class="smile_sub_menu">
+                    <li class="conf"><a id="conf" href="#"><img id="set_img" src="../../media/button/setting.png">設定</a></li>
+                    <li class="ser"><a id="conf" href="#"><img id="ser_img" src="../../media/button/search.PNG">ユーザ検索</a></li>
+                    <li class="logout"><a id="logout" href="{% url 'share_calendar:logout' %}">ログアウト</a></li>
+                </ul>
+                </li>
+                
+            </ul>
+{% endblock %}
+{% block content %}
+    <div class="memory_pic_container">
+        <div class="memory_pic_content">
+            <div class="memory_pic_header">
+                
+                <button><a href="{% get_return_link request %}">back</a></button>
+                
+                
+                <span id="schedule_date">{{schedule.date|date:"Y-n-d"}}</span><span>{{schedule}}</span>
+                
+                {% if schedule.author == request.user %}
+                <div class="mobile_add_picture_warp">
+                <a href="{% url 'share_calendar:today_image_form' num %}"><span id="plus">+</span><span id="picture"><img src="../../media/button/images.PNG"></span></a>
+                </div>
+                {% endif %}
+                {% if request.user in schedule.member_sch.member.all %}
+                <div class="mobile_add_picture_warp">
+                <a href="{% url 'share_calendar:today_image_form' num %}"><span id="plus">+</span><span id="picture"><img src="../../media/button/images.PNG"></span></a>
+                </div>
+                {% endif %}
+                
+            </div>
+            <div class="main_pic">
+                <img src="../../media/{{main_pic.main_pic}}/">
+            </div>
+            <div class="mobile_main_pic">
+                <img src="../../media/{{main_pic.main_pic}}/">
+            </div>
+            <div class="pictures_container">
+                {% for pictures_list in pictures %}
+                <div class="pictures" id="pictures">
+                    {% for picture in pictures_list %}
+                    <div class="mobile_picture_wrap">
+                    <a href="{% url 'share_calendar:look_pic' num forloop.parentloop.counter0 forloop.counter0 %}">
+                        <img src="../../media/{{picture.image}}">
+                    </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../../static/share_calendar/js/memory_pic.js"></script>
+{% endblock %}
