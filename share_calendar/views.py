@@ -673,22 +673,21 @@ def follow(request, pk):
     return render(request, 'share_calendar/follow.html', params)
 
 def add_user(request):
-    params = {}
-    if request.user.is_active and request.user.is_authenticated:
-        obj = User()
-        form = User_Form(request.POST or None,instance=obj)
-        if request.method == "POST" and form.is_valid():
-            user = form.save(commit=False)
-            password = form.cleaned_data['password']
-        
-            #  Use set_password here
-            user.set_password(password)
-            user.save()
-            return redirect(to="share_calendar:login")
-        
-        params = {
-                "form":form,
-                }
+
+    obj = User()
+    form = User_Form(request.POST or None,instance=obj)
+    if request.method == "POST" and form.is_valid():
+        user = form.save(commit=False)
+        password = form.cleaned_data['password']
+    
+        #  Use set_password here
+        user.set_password(password)
+        user.save()
+        return redirect(to="share_calendar:login")
+    
+    params = {
+            "form":form,
+            }
         
     return render(request, 'share_calendar/add_user.html', params)
 
