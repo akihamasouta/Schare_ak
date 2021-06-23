@@ -1,12 +1,9 @@
 __pycache__
 staticfiles
 local_settings.py
-db.sqlite3
 *.py[co]
 *.pyc
 *~
 myspace
-db.sqlite3
 /static
-/media
 .DS_Store
