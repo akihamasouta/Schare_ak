@@ -1,6 +1,5 @@
 staticfiles
 local_settings.py
-db.sqlite3
 myspace
 /static
 .DS_Store
