@@ -1,4 +1,7 @@
+staticfiles
 local_settings.py
+myspace
+/static
 .DS_Store
 media/.DS_Store
 media/icon/.DS_Store
